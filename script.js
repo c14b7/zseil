@@ -1,9 +1,9 @@
 /**
- * Plan Lekcji ZSEIL - Wersja statyczna z GitHub Pages
- * Czyta dane z plików JSON generowanych przez GitHub Actions
+ * Plan Lekcji ZSEIL - Frontend dla Flask API
+ * Komunikuje się z backendem Flask przez API endpoints
  */
 
-class StaticScheduleApp {
+class ScheduleApp {
     constructor() {
         this.availableItems = null;
         this.currentSchedule = null;
@@ -15,6 +15,9 @@ class StaticScheduleApp {
     async init() {
         console.log('🚀 Inicjalizacja aplikacji planu lekcji');
         
+        // Test połączenia z API
+        await this.testConnection();
+        
         // Pobierz dostępne elementy
         await this.loadAvailableItems();
         
@@ -25,47 +28,52 @@ class StaticScheduleApp {
         this.updateItemSelector('klasa');
     }
     
+    async testConnection() {
+        try {
+            console.log('🔌 Testowanie połączenia z API...');
+            const response = await fetch('/api/test-connection');
+            const data = await response.json();
+            
+            if (data.success) {
+                console.log('✅ Połączenie z API działa');
+            } else {
+                console.warn('⚠️ Problem z połączeniem:', data.message);
+            }
+        } catch (error) {
+            console.error('❌ Błąd połączenia z API:', error);
+        }
+    }
+    
     async loadAvailableItems() {
         try {
-            console.log('📡 Pobieranie dostępnych elementów...');
+            console.log('📡 Pobieranie dostępnych elementów z API...');
             
-            const response = await fetch('./data/available_items.json');
+            const response = await fetch('/api/available-items');
             
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
             
-            this.availableItems = await response.json();
+            const data = await response.json();
+            
+            if (!data.success) {
+                throw new Error(data.error || 'Nieznany błąd API');
+            }
+            
+            this.availableItems = data.items;
             
             console.log('✅ Załadowano dostępne elementy:', {
                 klasy: this.availableItems.klasa?.length || 0,
                 nauczyciele: this.availableItems.nauczyciel?.length || 0,
-                sale: this.availableItems.sala?.length || 0,
-                ostatnia_aktualizacja: this.availableItems.last_updated
+                sale: this.availableItems.sala?.length || 0
             });
-            
-            // Pokaż informację o ostatniej aktualizacji
-            this.showLastUpdateInfo();
             
         } catch (error) {
             console.error('❌ Błąd pobierania dostępnych elementów:', error);
-            this.showError('Nie udało się załadować listy dostępnych opcji. Sprawdź czy dane zostały wygenerowane przez GitHub Actions.');
+            this.showError('Nie udało się załadować listy dostępnych opcji. Sprawdź połączenie z serwerem.');
             
             // Załaduj dane przykładowe jako fallback
             this.loadFallbackData();
-        }
-    }
-    
-    showLastUpdateInfo() {
-        if (this.availableItems?.last_updated) {
-            const updateDate = new Date(this.availableItems.last_updated);
-            const formatted = updateDate.toLocaleString('pl-PL');
-            
-            // Dodaj informację do nagłówka
-            const header = document.querySelector('header p');
-            if (header) {
-                header.innerHTML = `Wybierz klasę, nauczyciela lub salę<br><small>Ostatnia aktualizacja: ${formatted}</small>`;
-            }
         }
     }
     
@@ -74,8 +82,7 @@ class StaticScheduleApp {
         this.availableItems = {
             klasa: ['1A', '1C', '1D', '1F', '1G', '1H', '2A', '2C', '2D', '2F', '2H'],
             nauczyciel: ['BAJUK JOANNA', 'BANASZEK IRMINA', 'BODZAK ANDRZEJ', 'BUDZIŃSKA ALEKSANDRA'],
-            sala: ['101', '104', '108', '112', '113', '116', '117', '120', 'SG1', 'SG2'],
-            last_updated: new Date().toISOString()
+            sala: ['101', '104', '108', '112', '113', '116', '117', '120', 'SG1', 'SG2']
         };
     }
     
@@ -156,19 +163,30 @@ class StaticScheduleApp {
         this.hideError();
         
         try {
-            // Utwórz nazwę pliku - zamień znaki specjalne
-            const filename = `schedule_${type}_${item.replace(/[\/\s]/g, '_')}.json`;
-            const response = await fetch(`./data/${filename}`);
+            const response = await fetch('/api/schedule', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type: type,
+                    item: item
+                })
+            });
             
             if (!response.ok) {
-                throw new Error(`Plan dla "${item}" nie został znaleziony (${response.status})`);
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
             
-            const scheduleData = await response.json();
+            const data = await response.json();
             
-            console.log('✅ Załadowano plan:', scheduleData);
+            if (!data.success) {
+                throw new Error(data.error || 'Nieznany błąd API');
+            }
             
-            this.currentSchedule = scheduleData.schedule;
+            console.log('✅ Załadowano plan z API:', data);
+            
+            this.currentSchedule = data.schedule;
             this.displaySchedule(type, item);
             
         } catch (error) {
@@ -322,10 +340,10 @@ class StaticScheduleApp {
 // Uruchom aplikację po załadowaniu DOM
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🌟 Uruchamianie aplikacji planu lekcji ZSEIL');
-    new StaticScheduleApp();
+    new ScheduleApp();
 });
 
 // Debug info
-console.log('📋 Plan Lekcji ZSEIL - Wersja statyczna');
+console.log('📋 Plan Lekcji ZSEIL - Wersja Flask');
 console.log('🔗 GitHub Repository: https://github.com/c14b7/zsei');
-console.log('⚡ Powered by GitHub Actions + GitHub Pages');
+console.log('⚡ Powered by Flask + Playwright');

@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright
 
-url = "http://zseil.ikkm.pl/PLAN/K/3A"
+url = "https://zseil.ikkm.pl/DY%c5%bbURY/SP"
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
