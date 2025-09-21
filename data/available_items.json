@@ -1,0 +1,32 @@
+{
+  "klasa": [
+    "1A", "1C", "1D", "1F", "1G", "1H",
+    "2A", "2C", "2D", "2F", "2H",
+    "3A", "3C", "3D", "3F", "3H",
+    "4A", "4C", "4D", "4F", "4H"
+  ],
+  "nauczyciel": [
+    "BAJUK JOANNA",
+    "BANASZEK IRMINA", 
+    "BODZAK ANDRZEJ",
+    "BUDZIŃSKA ALEKSANDRA",
+    "CZERNIAK ANNA",
+    "KOWALSKI JAN",
+    "NOWAK ANNA"
+  ],
+  "sala": [
+    "101", "102", "104", "108", "112", "113", 
+    "116", "117", "120", "201", "202", "203",
+    "SG1", "SG2", "Pracownia informatyczna"
+  ],
+  "last_updated": "2025-09-21T10:00:00.000Z",
+  "teacher_mapping": {
+    "BAJUK JOANNA": "n1",
+    "BANASZEK IRMINA": "n2",
+    "BODZAK ANDRZEJ": "n3",
+    "BUDZIŃSKA ALEKSANDRA": "n4",
+    "CZERNIAK ANNA": "n5",
+    "KOWALSKI JAN": "n6",
+    "NOWAK ANNA": "n7"
+  }
+}

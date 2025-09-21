@@ -1,0 +1,42 @@
+name: Update Schedule Data
+
+on:
+  schedule:
+    # Aktualizuj dane codziennie o 6:00 UTC (8:00 w Polsce)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Pozwala na ręczne uruchomienie
+  push:
+    branches: [ main ]
+
+jobs:
+  update-schedule:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install playwright requests beautifulsoup4
+        playwright install chromium
+        
+    - name: Run data scraper
+      run: |
+        python data_scraper.py
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/
+        git diff --staged --quiet || git commit -m "Aktualizacja danych planu lekcji $(date)"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
