@@ -282,13 +282,20 @@ main {
         min-width: 100%;
     }
     
+    .schedule-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
     .schedule-table {
         font-size: 12px;
+        min-width: 600px;
     }
     
     .schedule-table th,
     .schedule-table td {
         padding: 8px 4px;
+        white-space: nowrap;
     }
     
     .lesson {
