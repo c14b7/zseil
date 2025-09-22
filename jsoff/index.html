@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Lekcji - ZSEIL</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Dodajemy Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Plan Lekcji</h1>
+            <p>Powiedzmy że coś jak Super Clever ale nowe</p>
+            <div id="data-status" class="data-status">
+                <span id="data-info">⏳ Ładowanie danych...</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="controls">
+                <div class="filter-grid">
+                    <div class="filter-section">
+                        <label for="class-selector">🎓 Klasa</label>
+                        <select id="class-selector" disabled>
+                            <option value="">⏳ Ładowanie klas...</option>
+                        </select>
+                    </div>
+                    <div class="filter-section">
+                        <label for="teacher-selector">👨‍🏫 Nauczyciel</label>
+                        <select id="teacher-selector" disabled>
+                            <option value="">Wybierz nauczyciela...</option>
+                        </select>
+                    </div>
+                    <div class="filter-section">
+                        <label for="room-selector">🏫 Sala</label>
+                        <select id="room-selector" disabled>
+                            <option value="">Wybierz salę...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="action-container">
+                    <button id="load-btn" disabled>
+                        📋 Pokaż plan
+                    </button>
+                </div>
+            </div>
+            
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>⏳ Ładowanie planu...</p>
+            </div>
+            
+            <div id="schedule-container" class="schedule-container">
+                <div id="error-message" class="error-message hidden"></div>
+                <table id="schedule-table" class="schedule-table hidden">
+                    <thead>
+                        <tr>
+                            <th>🕐 Godz</th>
+                            <th>Pon</th>
+                            <th>Wt</th>
+                            <th>Śr</th>
+                            <th>Czw</th>
+                            <th>Pt</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-body">
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="metadata" id="metadata-info">
+                <p>
+                    Status danych
+                    <span id="data-loaded-status">Nieznany</span>
+                </p>
+                <p>
+                    Ostatnia aktualizacja
+                    <span id="last-update">Nieznane</span>
+                </p>
+                <p>
+                    Plany w bazie
+                    <span id="total-schedules">0</span>
+                </p>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Inicjalizacja ikon Lucide (jeśli potrzebne)
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

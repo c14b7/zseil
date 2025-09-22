@@ -57,28 +57,29 @@ class DutyScraper:
         logger.info(f"Łączę się z URL: {self.base_url}")
         
         try:
-            with sync_playwright() as p:
+            async with async_playwright() as p:
                 logger.info("Uruchamiam przeglądarkę Chromium...")
-                browser = p.chromium.launch(headless=True)
-                page = browser.new_page()
+                browser = await p.chromium.launch(headless=True)
+                page = await browser.new_page()
                 
                 logger.info("Nawiguję do strony dyżurów...")
-                page.goto(self.base_url, wait_until="networkidle", timeout=30000)
+                await page.goto(self.base_url, wait_until="networkidle", timeout=30000)
                 logger.info("Strona załadowana, czekam na stabilizację...")
                 
                 # Sprawdź czy strona się załadowała
-                page_title = page.title()
+                page_title = await page.title()
                 logger.info(f"Tytuł strony: '{page_title}'")
                 
                 # Pobierz nauczycieli z div#lista-dyzurujacych
                 logger.info("Szukam listy nauczycieli dyżurujących...")
                 nauczyciele = []
-                teacher_elements = page.query_selector_all("#lista-dyzurujacych div[data-nid]")
+                teacher_elements = await page.query_selector_all("#lista-dyzurujacych div[data-nid]")
                 logger.info(f"Znaleziono {len(teacher_elements)} elementów nauczycieli")
                 
                 for idx, elem in enumerate(teacher_elements):
-                    teacher_id = elem.get_attribute("data-nid")
-                    teacher_name = elem.inner_text().strip()
+                    teacher_id = await elem.get_attribute("data-nid")
+                    teacher_name = await elem.inner_text()
+                    teacher_name = teacher_name.strip() if teacher_name else ""
                     if teacher_id and teacher_name:
                         nauczyciele.append({
                             'name': teacher_name,
@@ -89,7 +90,7 @@ class DutyScraper:
                 
                 logger.info(f"Całkowita liczba nauczycieli: {len(nauczyciele)}")
                 
-                browser.close()
+                await browser.close()
                 logger.info("Przeglądarka zamknięta")
                 
                 # Zapisz mapowanie nauczycieli (nazwa -> id) do późniejszego użycia
@@ -130,34 +131,35 @@ class DutyScraper:
             duty_url = f"{self.base_url}/{teacher_id}"
             logger.info(f"URL dyżuru: {duty_url} (ID: {teacher_id})")
             
-            with sync_playwright() as p:
+            async with async_playwright() as p:
                 logger.info("Uruchamiam przeglądarkę dla dyżurów...")
-                browser = p.chromium.launch(headless=True)
-                page = browser.new_page()
+                browser = await p.chromium.launch(headless=True)
+                page = await browser.new_page()
                 
                 logger.info("Nawiguję do strony dyżurów...")
-                response = page.goto(duty_url, wait_until="networkidle", timeout=30000)
+                response = await page.goto(duty_url, wait_until="networkidle", timeout=30000)
                 
                 if response:
                     logger.info(f"Odpowiedź serwera: {response.status}")
                     if response.status != 200:
                         logger.warning(f"Nieprawidłowy kod odpowiedzi: {response.status}")
                 
-                page_title = page.title()
+                page_title = await page.title()
                 logger.info(f"Tytuł strony dyżurów: '{page_title}'")
                 
                 # Pobierz informację o nauczycielu z nagłówka
                 teacher_info = ""
-                name_elem = page.query_selector('#imie-i-nazwisko')
+                name_elem = await page.query_selector('#imie-i-nazwisko')
                 if name_elem:
-                    teacher_info = name_elem.inner_text().strip()
+                    teacher_info_text = await name_elem.inner_text()
+                    teacher_info = teacher_info_text.strip() if teacher_info_text else ""
                     logger.info(f"Informacja o nauczycielu: '{teacher_info}'")
                 
                 # Poczekaj na dynamiczne załadowanie dyżurów (do 10 sekund)
                 logger.info("Czekam na załadowanie grafiku dyżurów...")
                 try:
                     # Czekaj aż kontener będzie zawierać jakieś dane
-                    page.wait_for_function(
+                    await page.wait_for_function(
                         "() => document.querySelector('#grafik-dyzurujacego')?.innerHTML?.trim()?.length > 100", 
                         timeout=10000
                     )
@@ -165,7 +167,7 @@ class DutyScraper:
                 except:
                     logger.warning("⚠ Timeout - grafik może nie być w pełni załadowany")
                     # Spróbuj dodatkowe oczekiwanie
-                    page.wait_for_timeout(3000)
+                    await page.wait_for_timeout(3000)
                 
                 # Parsuj dyżury (funkcja sama sprawdzi dostępne kontenery)
                 duties = await self._parse_duty_schedule(page, teacher_info)
@@ -176,7 +178,7 @@ class DutyScraper:
                     logger.info("Nie znaleziono dyżurów - używam testowych danych")
                     duties = self._get_mock_duty(teacher_name)
                 
-                browser.close()
+                await browser.close()
                 logger.info("Przeglądarka zamknięta")
                 
                 # Sprawdź czy dyżury zawierają dane
@@ -198,12 +200,12 @@ class DutyScraper:
         logger.info("--- PARSOWANIE DYŻURÓW ---")
         
         # Sprawdź czy kontener grafiku istnieje
-        grafik_container = page.query_selector('#grafik-dyzurujacego')
+        grafik_container = await page.query_selector('#grafik-dyzurujacego')
         if grafik_container:
             logger.info(f"Znaleziono kontener grafiku: #grafik-dyzurujacego")
             
             # Sprawdź zawartość HTML PRZED czekaniem
-            container_html = grafik_container.inner_html()
+            container_html = await grafik_container.inner_html()
             logger.info(f"Zawartość HTML kontenera PRZED (pierwsze 200 znaków): {container_html[:200]}")
             
             # Dodatkowe oczekiwanie na JavaScript i dynamiczne ładowanie
@@ -211,7 +213,7 @@ class DutyScraper:
             await page.wait_for_timeout(3000)
             
             # Sprawdź ponownie po oczekiwaniu
-            container_html_after = grafik_container.inner_html()
+            container_html_after = await grafik_container.inner_html()
             logger.info(f"Zawartość HTML kontenera PO OCZEKIWANIU (pierwsze 200 znaków): {container_html_after[:200]}")
             
             # Czekaj na dynamiczne załadowanie zawartości - dłuższy timeout

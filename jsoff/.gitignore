@@ -1,0 +1,11 @@
+# Pliki potrzebne tylko lokalnie do generowania danych
+app.py
+
+# Logi Python
+*.log
+__pycache__/
+*.pyc
+
+# Pliki tymczasowe
+.DS_Store
+Thumbs.db
