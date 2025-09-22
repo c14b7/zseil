@@ -1177,11 +1177,18 @@ main {
     
     .schedule-table {
         font-size: 0.8rem;
+        min-width: 600px;
+    }
+    
+    .schedule-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .schedule-table th,
     .schedule-table td {
         padding: 12px 8px;
+        white-space: nowrap;
     }
     
     .lesson-number {
