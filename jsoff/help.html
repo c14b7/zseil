@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jak pomóc - Plan Lekcji ZSEIL</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Dodajemy Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="container help-page">
+        <header>
+            <a href="index.html" class="back-link">
+                <i data-lucide="arrow-left"></i>
+                Powrót do planu
+            </a>
+            <h1>Jak możesz pomóc?</h1>
+            <p>Instrukcje dla uczniów jak pomóc w rozwoju narzędzia</p>
+        </header>
+        
+        <main>
+            <div class="help-content">
+                <div class="help-section">
+                    <h2><i data-lucide="users"></i> Jak możesz pomóc naprawić nasz plan?</h2>
+                    <p>Aby nasz system <strong>Super Clever</strong> działał prawidłowo, potrzebujemy zgody nauczycieli na wyświetlanie ich danych (imienia i nazwiska) w naszym systemie.</p>
+                    
+                    <div class="warning-box">
+                        <i data-lucide="shield-check"></i>
+                        <p><strong>To jedyny bezpieczny sposób</strong> na uzyskanie dostępu do planów lekcji nauczycieli.</p>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h2><i data-lucide="message-circle"></i> Jak skontaktować się z nauczycielem?</h2>
+                    <p>Poproś nauczyciela o zgodę jednym z poniższych sposobów:</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <h3><i data-lucide="video"></i> Microsoft Teams</h3>
+                            <div class="template-box">
+                                <p><strong>Szablon wiadomości:</strong></p>
+                                <div class="template-content">
+                                    <p>Dzień dobry!</p>
+                                    <p>Uczniowie rozwijają nowe narzędzie do przeglądania planu lekcji (Super Clever). Aby system działał prawidłowo, potrzebujemy Pana/Pani zgody na wyświetlanie imienia i nazwiska w naszym systemie.</p>
+                                    <p>Czy może Pan/Pani wysłać screenshot z potwierdzeniem zgody?</p>
+                                    <p>Dziękujemy!</p>
+                                </div>
+                                <button class="copy-btn" onclick="copyTemplate(this)" data-template="teams">
+                                    <i data-lucide="copy"></i>
+                                    Kopiuj szablon
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <h3><i data-lucide="graduation-cap"></i> Vulcan</h3>
+                            <div class="template-box">
+                                <p><strong>Szablon wiadomości:</strong></p>
+                                <div class="template-content">
+                                    <p>Dzień dobry!</p>
+                                    <p>Rozwijamy narzędzie Super Clever do planów lekcji. Potrzebujemy zgody na wyświetlanie Pana/Pani danych (imię i nazwisko) w systemie.</p>
+                                    <p>Proszę o potwierdzenie zgody.</p>
+                                    <p>Pozdrawienia</p>
+                                </div>
+                                <button class="copy-btn" onclick="copyTemplate(this)" data-template="vulcan">
+                                    <i data-lucide="copy"></i>
+                                    Kopiuj szablon
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <h3><i data-lucide="mail"></i> Email</h3>
+                            <div class="template-box">
+                                <p><strong>Szablon wiadomości:</strong></p>
+                                <div class="template-content">
+                                    <p>Temat: Zgoda na wyświetlanie danych w systemie Super Clever</p>
+                                    <p>Dzień dobry!</p>
+                                    <p>Jesteśmy uczniami ZSEIL i rozwijamy nowy system planu lekcji o nazwie Super Clever. Aby nasz system mógł prawidłowo wyświetlać plany lekcji, potrzebujemy zgody na używanie Pana/Pani imienia i nazwiska w naszej aplikacji.</p>
+                                    <p>Czy może Pan/Pani wyrazić zgodę na wyświetlanie swoich danych osobowych (imię i nazwisko) w naszym systemie?</p>
+                                    <p>Bardzo prosimy o odpowiedź ze screenshotem potwierdzenia.</p>
+                                    <p>Z poważaniem,<br>Zespół Super Clever</p>
+                                </div>
+                                <button class="copy-btn" onclick="copyTemplate(this)" data-template="email">
+                                    <i data-lucide="copy"></i>
+                                    Kopiuj szablon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h2><i data-lucide="camera"></i> Ważne!</h2>
+                    <p>Po otrzymaniu zgody od nauczyciela, poproś o <strong>screenshot potwierdzenia</strong> i wyślij go do zespołu rozwojowego przez:</p>
+                    <ul>
+                        <li><a href="https://github.com/c14b7/zseil/issues" target="_blank">GitHub Issues</a></li>
+                        <li>Lub przez email do administratora systemu</li>
+                    </ul>
+                </div>
+
+                <div class="help-section thanks">
+                    <h2><i data-lucide="heart"></i> Dziękujemy!</h2>
+                    <p>Twoja pomoc jest nieoceniona w rozwoju naszego narzędzia. Dzięki Tobie Super Clever będzie działał lepiej dla całej społeczności szkolnej!</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="help-footer">
+                <a href="index.html" class="back-to-main">
+                    <i data-lucide="arrow-left"></i>
+                    Powrót do głównej strony
+                </a>
+                <div class="help-version">
+                    <span>Pomoc - wersja 1.0</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Funkcja kopiowania szablonu
+        function copyTemplate(button) {
+            const templateType = button.getAttribute('data-template');
+            const templateContent = button.parentElement.querySelector('.template-content');
+            const text = templateContent.innerText;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Zmień tekst przycisku na chwilę
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i data-lucide="check"></i> Skopiowano!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                    // Reinicjalizuj ikony
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+                }, 2000);
+            }).catch(() => {
+                alert('Nie udało się skopiować. Zaznacz tekst ręcznie i skopiuj.');
+            });
+        }
+
+        // Inicjalizacja ikon Lucide
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

@@ -52,6 +52,17 @@
     font-weight: 500;
 }
 
+.banner-text span #help-link {
+    color: #fef2f2;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.banner-text span #help-link:hover {
+    color: white;
+}
+
 .close-banner-btn {
     position: absolute;
     right: 0;
@@ -1515,5 +1526,306 @@ main {
     
     .app-version {
         font-size: 0.85rem;
+    }
+}
+
+/* Help page styles */
+.help-page .container {
+    max-width: 1000px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #94a3b8;
+    text-decoration: none;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    color: #f1f5f9;
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.back-link i {
+    width: 16px;
+    height: 16px;
+}
+
+.help-content {
+    padding: 0;
+}
+
+.help-section {
+    background: rgba(15, 23, 42, 0.7);
+    padding: 32px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    backdrop-filter: blur(15px);
+}
+
+.help-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #f1f5f9;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.help-section h2 i {
+    width: 24px;
+    height: 24px;
+    color: #3b82f6;
+}
+
+.help-section p {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.help-section ul {
+    color: #cbd5e1;
+    padding-left: 24px;
+    line-height: 1.6;
+}
+
+.help-section ul li {
+    margin-bottom: 8px;
+}
+
+.help-section ul a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.help-section ul a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.warning-box {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.warning-box i {
+    color: #fbbf24;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.warning-box p {
+    color: #fed7aa;
+    margin: 0;
+    font-weight: 500;
+}
+
+.contact-methods {
+    margin-top: 24px;
+}
+
+.contact-method {
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.contact-method h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #f1f5f9;
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+}
+
+.contact-method h3 i {
+    width: 20px;
+    height: 20px;
+    color: #3b82f6;
+}
+
+.template-box {
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    margin-top: 12px;
+}
+
+.template-content {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 16px;
+    border-radius: 8px;
+    margin: 12px 0 16px 0;
+    border-left: 4px solid #3b82f6;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #e2e8f0;
+}
+
+.template-content p {
+    margin-bottom: 8px;
+    color: #e2e8f0;
+}
+
+.template-content p:last-child {
+    margin-bottom: 0;
+}
+
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+    background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+    transform: translateY(-1px);
+}
+
+.copy-btn.copied {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.copy-btn i {
+    width: 16px;
+    height: 16px;
+}
+
+.help-section.thanks {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.help-section.thanks h2 {
+    color: #6ee7b7;
+}
+
+.help-section.thanks h2 i {
+    color: #10b981;
+}
+
+.help-footer {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.back-to-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.back-to-main:hover {
+    color: #f1f5f9;
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.back-to-main i {
+    width: 16px;
+    height: 16px;
+}
+
+.help-version {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-family: 'Courier New', monospace;
+}
+
+/* Help page mobile responsive */
+@media (max-width: 768px) {
+    .help-page .container {
+        max-width: 100%;
+    }
+    
+    .help-section {
+        padding: 24px 20px;
+    }
+    
+    .help-section h2 {
+        font-size: 1.2rem;
+    }
+    
+    .help-section p {
+        font-size: 0.9rem;
+    }
+    
+    .contact-method {
+        padding: 20px 16px;
+    }
+    
+    .contact-method h3 {
+        font-size: 1.1rem;
+    }
+    
+    .template-content {
+        font-size: 0.8rem;
+        padding: 12px;
+    }
+    
+    .copy-btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+    
+    .help-footer {
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .help-version {
+        margin-top: 8px;
     }
 }
