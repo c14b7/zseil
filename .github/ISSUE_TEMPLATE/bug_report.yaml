@@ -2,7 +2,6 @@ name: Zgłoszenie błędu
 description: Zgłoś błąd lub problem. Do zgłaszania pomysłów jest inny formularz.
 title: 'Błąd: [krótki opis]'
 labels: ['bug']
-assignees: ''
 body:
   - type: markdown
     attributes:
