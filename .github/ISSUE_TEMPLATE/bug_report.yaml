@@ -2,6 +2,7 @@ name: Zgłoszenie błędu
 description: Zgłoś błąd lub problem. Do zgłaszania pomysłów jest inny formularz.
 title: 'Błąd: [krótki opis]'
 labels: ['bug']
+assignees: []
 body:
   - type: markdown
     attributes:
@@ -16,6 +17,7 @@ body:
       label: Opis błędu
       description: Opisz dokładnie napotkany problem lub błąd. Im więcej szczegółów podasz, tym łatwiej będzie nam go zidentyfikować i naprawić.
       placeholder: Na przykład "Strona nie ładuje się poprawnie na urządzeniach mobilnych" lub "Funkcja X zwraca błąd Y podczas wykonywania Z"
+    validations:
       required: true
 
   - type: textarea
@@ -28,6 +30,7 @@ body:
         2. Kliknij na przycisk 'Zaloguj'
         3. Wprowadź nieprawidłowe dane logowania
         4. Naciśnij 'Enter'
+    validations:
       required: true
 
   - type: textarea
@@ -36,6 +39,7 @@ body:
       label: Oczekiwane zachowanie
       description: Opisz, jak system powinien działać w normalnych warunkach.
       placeholder: Na przykład "System powinien wyświetlić komunikat o błędnych danych logowania"
+    validations:
       required: true
 
   - type: textarea
@@ -44,6 +48,7 @@ body:
       label: Aktualne (nieprawidłowe) zachowanie
       description: Opisz, co dzieje się w rzeczywistości.
       placeholder: Na przykład "Strona się zawiesza i nie reaguje na żadne działania"
+    validations:
       required: true
 
   - type: input
@@ -52,6 +57,7 @@ body:
       label: Urządzenie i przeglądarka
       description: Podaj informacje o urządzeniu i przeglądarce, na której wystąpił błąd.
       placeholder: Na przykład "iPhone 12, iOS 14.4, Safari" lub "Windows 10, Chrome 89"
+    validations:
       required: false
 
   - type: dropdown
@@ -64,6 +70,7 @@ body:
         - Często (większość prób)
         - Czasami (sporadycznie)
         - Raz (nie udało się powtórzyć)
+    validations:
       required: true
 
   - type: checkboxes

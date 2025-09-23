@@ -2,7 +2,7 @@ name: Zgłoszenie pomysłu
 description: Zaproponuj nową funkcję lub ulepszenie. Do zgłaszania błędów jest inny formularz.
 title: 'Pomysł: [krótki opis]'
 labels: ['enhancement', 'pomysł']
-assignees: ''
+assignees: []
 body:
   - type: markdown
     attributes:
@@ -15,6 +15,7 @@ body:
       label: Opis pomysłu
       description: Opisz szczegółowo swoją propozycję. Co chciałbyś dodać lub zmienić w systemie?
       placeholder: Na przykład "Dodanie możliwości eksportu planu lekcji do formatu PDF" lub "Funkcja zapisywania ulubionych planów"
+    validations:
       required: true
 
   - type: textarea
@@ -23,6 +24,7 @@ body:
       label: Uzasadnienie
       description: Dlaczego ten pomysł jest potrzebny? Jaki problem rozwiązuje?
       placeholder: Na przykład "Uczniowie często potrzebują mieć plan lekcji w wersji offline" lub "Aktualnie trzeba za każdym razem wyszukiwać te same plany"
+    validations:
       required: true
 
   - type: dropdown
@@ -36,6 +38,7 @@ body:
         - Wszyscy użytkownicy
         - Administratorzy
         - Inne (opisz w komentarzach)
+    validations:
       required: true
 
   - type: dropdown
@@ -48,6 +51,7 @@ body:
         - Średni (przydatne)
         - Wysoki (bardzo potrzebne)
         - Krytyczny (niezbędne)
+    validations:
       required: true
 
   - type: textarea
@@ -56,6 +60,7 @@ body:
       label: Rozważane alternatywy
       description: Czy rozważałeś inne sposoby rozwiązania tego problemu? Jeśli tak, opisz je.
       placeholder: Na przykład "Można też używać zewnętrznych aplikacji, ale nie są one zintegrowane z systemem szkoły"
+    validations:
       required: false
 
   - type: textarea
@@ -64,6 +69,7 @@ body:
       label: Dodatkowe informacje
       description: Inne informacje, które mogą być przydatne przy ocenie pomysłu.
       placeholder: Linki do podobnych rozwiązań, zrzuty ekranu, szkice interfejsu, itp.
+    validations:
       required: false
 
   - type: checkboxes
