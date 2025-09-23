@@ -1,2 +1,6 @@
 data/
 new/
+
+
+*.env
+*.log

@@ -1,13 +1,13 @@
 {
   "metadata": {
-    "scraped_at": "2025-09-22T12:06:47.132462",
-    "source_url": "http://zseil.ikkm.pl/PLAN",
+    "scraped_at": "2025-09-23T09:51:24.888123",
+    "source_url": "-",
     "total_classes": 38,
     "total_teachers": 90,
     "total_rooms": 67,
     "scraping_errors": [],
     "total_schedules_scraped": 195,
-    "scraping_duration_seconds": 532.58,
+    "scraping_duration_seconds": 540.06,
     "errors_count": 0
   },
   "available_items": {
@@ -3768,7 +3768,7 @@
             {
               "subject": "matematyka",
               "teacher": "BUDZIŃSKA ALEKSANDRA",
-              "room": "308",
+              "room": "306",
               "time": "08:35-09:20",
               "class": "2A12",
               "group": ""
@@ -3776,7 +3776,7 @@
             {
               "subject": "matematyka",
               "teacher": "BUDZIŃSKA ALEKSANDRA",
-              "room": "306",
+              "room": "308",
               "time": "08:35-09:20",
               "class": "2A12",
               "group": ""
@@ -4739,7 +4739,7 @@
             {
               "subject": "historia",
               "teacher": "GWIAZDONIK ANNA",
-              "room": "351",
+              "room": "140",
               "time": "10:20-11:05",
               "class": "2D12",
               "group": ""
@@ -4747,7 +4747,7 @@
             {
               "subject": "historia",
               "teacher": "GWIAZDONIK ANNA",
-              "room": "140",
+              "room": "351",
               "time": "10:20-11:05",
               "class": "2D12",
               "group": ""
@@ -6757,7 +6757,7 @@
           [
             {
               "subject": "EPM2",
-              "teacher": "BODZAK ANDRZEJ",
+              "teacher": "DĘBOWSKI KRZYSZTOF",
               "room": "135",
               "time": "15:55-16:40",
               "class": "3A12",
@@ -6765,7 +6765,7 @@
             },
             {
               "subject": "EPM2",
-              "teacher": "DĘBOWSKI KRZYSZTOF",
+              "teacher": "BODZAK ANDRZEJ",
               "room": "135",
               "time": "15:55-16:40",
               "class": "3A12",
@@ -23465,7 +23465,7 @@
             {
               "subject": "joz",
               "teacher": "DZIARSKA ELŻBIETA",
-              "room": "306",
+              "room": "301",
               "time": "12:15-13:00",
               "class": "3J - 1",
               "group": ""
@@ -23473,7 +23473,7 @@
             {
               "subject": "joz",
               "teacher": "DZIARSKA ELŻBIETA",
-              "room": "301",
+              "room": "306",
               "time": "12:15-13:00",
               "class": "3J - 1",
               "group": ""
@@ -46619,7 +46619,7 @@
               "teacher": "KOŁAK IRMINA",
               "room": "130",
               "time": "14:15-15:00",
-              "class": "5G",
+              "class": "5C",
               "group": ""
             },
             {
@@ -46627,7 +46627,7 @@
               "teacher": "KOŁAK IRMINA",
               "room": "130",
               "time": "14:15-15:00",
-              "class": "5C",
+              "class": "5G",
               "group": ""
             },
             {
@@ -46717,7 +46717,7 @@
               "teacher": "KOŁAK IRMINA",
               "room": "130",
               "time": "14:15-15:00",
-              "class": "2C",
+              "class": "2A",
               "group": ""
             },
             {
@@ -46725,7 +46725,7 @@
               "teacher": "KOŁAK IRMINA",
               "room": "130",
               "time": "14:15-15:00",
-              "class": "2A",
+              "class": "2C",
               "group": ""
             }
           ],
@@ -46945,14 +46945,6 @@
               "teacher": "CHMIELEWSKI SŁAWOMIR",
               "room": "130",
               "time": "14:15-15:00",
-              "class": "4J",
-              "group": ""
-            },
-            {
-              "subject": "religia",
-              "teacher": "CHMIELEWSKI SŁAWOMIR",
-              "room": "130",
-              "time": "14:15-15:00",
               "class": "4A",
               "group": ""
             },
@@ -46961,7 +46953,7 @@
               "teacher": "CHMIELEWSKI SŁAWOMIR",
               "room": "130",
               "time": "14:15-15:00",
-              "class": "4K",
+              "class": "4J",
               "group": ""
             },
             {
@@ -46970,6 +46962,14 @@
               "room": "130",
               "time": "14:15-15:00",
               "class": "4G",
+              "group": ""
+            },
+            {
+              "subject": "religia",
+              "teacher": "CHMIELEWSKI SŁAWOMIR",
+              "room": "130",
+              "time": "14:15-15:00",
+              "class": "4K",
               "group": ""
             }
           ],
@@ -49353,19 +49353,19 @@
           ],
           [
             {
-              "subject": "j.angielski",
-              "teacher": "ZIMNOWŁODZKA MARZENA",
-              "room": "151",
-              "time": "09:25-10:10",
-              "class": "4C - 1",
-              "group": ""
-            },
-            {
               "subject": "zaj.wych",
               "teacher": "JAMROZ MATEUSZ",
               "room": "151",
               "time": "09:25-10:10",
               "class": "4J",
+              "group": ""
+            },
+            {
+              "subject": "j.angielski",
+              "teacher": "ZIMNOWŁODZKA MARZENA",
+              "room": "151",
+              "time": "09:25-10:10",
+              "class": "4C - 1",
               "group": ""
             }
           ],
@@ -56345,7 +56345,7 @@
               "teacher": "GREJCZ KATARZYNA",
               "room": "301",
               "time": "12:15-13:00",
-              "class": "3J",
+              "class": "3I",
               "group": ""
             },
             {
@@ -56353,7 +56353,7 @@
               "teacher": "GREJCZ KATARZYNA",
               "room": "301",
               "time": "12:15-13:00",
-              "class": "3I",
+              "class": "3J",
               "group": ""
             }
           ],
@@ -56396,7 +56396,7 @@
               "teacher": "GREJCZ KATARZYNA",
               "room": "301",
               "time": "07:45-08:30",
-              "class": "4I",
+              "class": "4H",
               "group": ""
             },
             {
@@ -56404,7 +56404,7 @@
               "teacher": "GREJCZ KATARZYNA",
               "room": "301",
               "time": "07:45-08:30",
-              "class": "4H",
+              "class": "4I",
               "group": ""
             }
           ],
@@ -57457,19 +57457,19 @@
           ],
           [
             {
-              "subject": "fizyka",
-              "teacher": "JAWORSKA-ORGANA IWONA",
-              "room": "306",
-              "time": "12:15-13:00",
-              "class": "4C",
-              "group": ""
-            },
-            {
               "subject": "j.niemiecki",
               "teacher": "CWYL JOLANTA",
               "room": "306",
               "time": "12:15-13:00",
               "class": "3H - 2",
+              "group": ""
+            },
+            {
+              "subject": "fizyka",
+              "teacher": "JAWORSKA-ORGANA IWONA",
+              "room": "306",
+              "time": "12:15-13:00",
+              "class": "4C",
               "group": ""
             }
           ],
@@ -59391,7 +59391,7 @@
           [
             {
               "subject": "LPM9",
-              "teacher": "KOŁOSOWSKI JAN",
+              "teacher": "DĘBOWSKI KRZYSZTOF",
               "room": "328",
               "time": "08:35-09:20",
               "class": "5H - 1",
@@ -59399,7 +59399,7 @@
             },
             {
               "subject": "LPM9",
-              "teacher": "DĘBOWSKI KRZYSZTOF",
+              "teacher": "KOŁOSOWSKI JAN",
               "room": "328",
               "time": "08:35-09:20",
               "class": "5H - 1",

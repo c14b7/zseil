@@ -1126,6 +1126,82 @@ main {
     color: #f1f5f9;
 }
 
+/* Sekcja informacji o aplikacji */
+.app-info {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.app-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.app-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.app-links a:hover {
+    color: #f1f5f9;
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.github-link:hover {
+    background: rgba(88, 166, 255, 0.2);
+    border-color: rgba(88, 166, 255, 0.3);
+}
+
+.feedback-link:hover {
+    background: rgba(248, 113, 113, 0.2);
+    border-color: rgba(248, 113, 113, 0.3);
+}
+
+.app-links i {
+    width: 16px;
+    height: 16px;
+}
+
+.app-version {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.version-label {
+    font-weight: 500;
+}
+
+.version-number {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #94a3b8;
+    background: rgba(30, 41, 59, 0.8);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
 /* Responsywność */
 @media (max-width: 768px) {
     body {
@@ -1229,6 +1305,31 @@ main {
     .metadata p {
         padding: 12px;
     }
+    
+    .app-info {
+        margin-top: 24px;
+        padding-top: 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .app-links {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .app-links a {
+        flex: 1;
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 10px 12px;
+    }
+    
+    .app-version {
+        justify-content: center;
+        font-size: 0.75rem;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -1242,5 +1343,23 @@ main {
     
     .metadata {
         grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .app-info {
+        margin-top: 40px;
+        padding-top: 32px;
+    }
+    
+    .app-links {
+        gap: 20px;
+    }
+    
+    .app-links a {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+    
+    .app-version {
+        font-size: 0.85rem;
     }
 }

@@ -95,52 +95,51 @@ class ScheduleApp {
     generateMockSchedule(itemName) {
         return {
             'monday': [
-                [{'subject': 'Matematyka', 'teacher': 'J. Kowalski', 'room': '101', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
-                [{'subject': 'Polski', 'teacher': 'A. Nowak', 'room': '102', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
-                [{'subject': 'Angielski', 'teacher': 'M. Kozłowska', 'room': '201', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'Błąd ładowania danych', 'room': '000', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'A. Błąd ładowania danych', 'room': '000', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'M. Błąd ładowania danych', 'room': '000', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
                 [],
-                [{'subject': 'Historia', 'teacher': 'P. Wiśniewski', 'room': '202', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
-                [{'subject': 'Chemia', 'teacher': 'E. Kaczmarek', 'room': 'Lab', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'P. Błąd ładowania danych', 'room': '000', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'E. Błąd ładowania danych', 'room': '000', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
                 [],
                 []
             ],
             'tuesday': [
-                [{'subject': 'Fizyka', 'teacher': 'T. Zieliński', 'room': '103', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
-                [{'subject': 'Matematyka', 'teacher': 'J. Kowalski', 'room': '101', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'T. Błąd ładowania danych', 'room': '000', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'J. Błąd ładowania danych', 'room': '000', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
                 [],
-                [{'subject': 'WF', 'teacher': 'K. Adamska', 'room': 'Sala gym', 'time': '9:45-10:30', 'class': itemName, 'group': ''}],
-                [{'subject': 'Informatyka', 'teacher': 'R. Nowicki', 'room': 'Prac. inf.', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
-                [{'subject': 'Geografia', 'teacher': 'S. Lewandowski', 'room': '104', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'K. Błąd ładowania danych', 'room': '000', 'time': '9:45-10:30', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'R. Błąd ładowania danych', 'room': '000', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'S. Błąd ładowania danych', 'room': '000', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
                 [],
                 []
             ],
             'wednesday': [
-                [{'subject': 'Polski', 'teacher': 'A. Nowak', 'room': '102', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
-                [{'subject': 'Angielski', 'teacher': 'M. Kozłowska', 'room': '201', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
-                [{'subject': 'Matematyka', 'teacher': 'J. Kowalski', 'room': '101', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'A. Błąd ładowania danych', 'room': '000', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'M. Błąd ładowania danych', 'room': '000', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'J. Błąd ładowania danych', 'room': '000', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
                 [],
-                [{'subject': 'Biologia', 'teacher': 'D. Jankowski', 'room': '105', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
-                [{'subject': 'Plastyka', 'teacher': 'B. Kowalczyk', 'room': '106', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'D. Błąd ładowania danych', 'room': '000', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'B. Błąd ładowania danych', 'room': '000', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
                 [],
                 []
             ],
             'thursday': [
-                [{'subject': 'Historia', 'teacher': 'P. Wiśniewski', 'room': '202', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
-                [{'subject': 'Fizyka', 'teacher': 'T. Zieliński', 'room': '103', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
-                [{'subject': 'WF', 'teacher': 'K. Adamska', 'room': 'Sala gym', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'P. Błąd ładowania danych', 'room': '000', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'T. Błąd ładowania danych', 'room': '000', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'K. Błąd ładowania danych', 'room': '000', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
                 [],
-                [{'subject': 'Chemia', 'teacher': 'E. Kaczmarek', 'room': 'Lab', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
-                [{'subject': 'Matematyka', 'teacher': 'J. Kowalski', 'room': '101', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'E. Błąd ładowania danych', 'room': '000', 'time': '10:35-11:20', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'J. Błąd ładowania danych', 'room': '000', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
                 [],
                 []
             ],
             'friday': [
-                [{'subject': 'Angielski', 'teacher': 'M. Kozłowska', 'room': '201', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
-                [{'subject': 'Geografia', 'teacher': 'S. Lewandowski', 'room': '104', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
-                [{'subject': 'Polski', 'teacher': 'A. Nowak', 'room': '102', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
-                [{'subject': 'Informatyka', 'teacher': 'R. Nowicki', 'room': 'Prac. inf.', 'time': '9:45-10:30', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'M. Błąd ładowania danych', 'room': '000', 'time': '7:10-7:55', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'S. Błąd ładowania danych', 'room': '000', 'time': '8:00-8:45', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'A. Błąd ładowania danych', 'room': '000', 'time': '8:50-9:35', 'class': itemName, 'group': ''}],
+                [{'subject': 'Błąd ładowania danych', 'teacher': 'R. Błąd ładowania danych', 'room': '000', 'time': '9:45-10:30', 'class': itemName, 'group': ''}],
                 [],
-                [{'subject': 'Religia', 'teacher': 'Ks. M. Kowal', 'room': '107', 'time': '11:35-12:20', 'class': itemName, 'group': ''}],
                 [],
                 []
             ]
@@ -381,9 +380,10 @@ class ScheduleApp {
         
         // Godziny lekcji
         const lessonTimes = [
-            '7:10-7:55', '8:00-8:45', '8:50-9:35', '9:45-10:30',
-            '10:35-11:20', '11:35-12:20', '12:25-13:10', '13:15-14:00',
-            '14:05-14:50', '14:55-15:40'
+            '7:10-7:55', '7:45-8:30', '08:35-9:20', '9:25-10:10',
+            '10:20-11:05', '11:20-12:05', '12:15-13:00', '13:20-14:05',
+            '14:15-15:00', '15:05-15:50', '15:55-16:40', '16:45-17:30',
+            '17:35-18:20'
         ];
         
         const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];

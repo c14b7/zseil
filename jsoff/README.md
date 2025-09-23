@@ -1,81 +1,70 @@
-# Plan Lekcji ZSEIL - Hosting Statyczny
+# Plan Lekcji ZSEIL
 
-System planu lekcji działający wyłącznie w przeglądarce (JavaScript) z danymi w pliku JSON.
+Aplikacja do pobierania planów lekcji ze strony ZSEIL i generowania danych JSON.
 
-## 🚀 Deployment na hosting statyczny
+## Instalacja
 
-### Pliki potrzebne do hostingu:
-```
-📁 jsoff/
-├── index.html      # Główna strona
-├── script.js       # Logika aplikacji
-├── style.css       # Style CSS
-└── data.json       # Dane planów (1.6MB)
-```
-
-### ⚠️ Ważne: Plik `app.py` NIE jest potrzebny na hostingu!
-
-## 📋 Instrukcja deployment:
-
-### 1. GitHub Pages
-1. Skopiuj pliki: `index.html`, `script.js`, `style.css`, `data.json` do głównego folderu repo
-2. Włącz GitHub Pages w ustawieniach repo
-3. Strona będzie dostępna pod: `https://username.github.io/repo-name`
-
-### 2. Netlify
-1. Przeciągnij folder `jsoff` na netlify.com/drop
-2. Lub podłącz repo GitHub i ustaw folder publikacji na `jsoff`
-
-### 3. Vercel
-1. `npx vercel --cwd jsoff` 
-2. Lub podłącz repo GitHub
-
-### 4. Surge.sh
+1. Zainstaluj wymagane biblioteki:
 ```bash
-cd jsoff
-npm install -g surge
-surge
+pip install -r requirements.txt
 ```
 
-### 5. Firebase Hosting
+2. Zainstaluj Playwright browsers:
 ```bash
-cd jsoff
-npm install -g firebase-tools
-firebase login
-firebase init hosting
-firebase deploy
+playwright install
 ```
 
-## 🔄 Aktualizacja danych
+## Konfiguracja
 
-1. Uruchom lokalnie: `python app.py` (w folderze jsoff)
-2. Zostanie wygenerowany nowy `data.json`
-3. Prześlij nowy `data.json` na hosting
+Aplikacja używa pliku `.env` do konfiguracji. Przykładowy plik `.env`:
 
-## ✨ Funkcjonalności
+```env
+# URL strony z planami lekcji
+BASE_URL=http://url.data.pl/data
 
-- ✅ Działa bez serwera backend
-- ✅ Wszystkie dane w JSON (1.6MB)
-- ✅ Responsywny design
-- ✅ Filtrowanie: klasy, nauczyciele, sale
-- ✅ Plan lekcji z godzinami
-- ✅ Metadane: ostatnia aktualizacja, statystyki
-- ✅ Obsługa błędów i fallback data
+# Ustawienia scrapowania
+HEADLESS_MODE=true
+SCRAPING_DELAY=1
+TIMEOUT=15000
 
-## 📊 Statystyki danych
+# Plik wyjściowy
+OUTPUT_FILE=data.json
 
-- **Klasy**: ~40
-- **Nauczyciele**: ~60 
-- **Sale**: ~67
-- **Plany**: 195 (wszystkie kombinacje)
-- **Rozmiar danych**: 1.6MB
+# Ustawienia logowania
+LOG_LEVEL=INFO
 
-## 🛠️ Technologie
+# Opcjonalne ustawienia przeglądarki
+USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+```
 
-- **Frontend**: Vanilla JavaScript, CSS3, HTML5
-- **Data source**: JSON file (statyczne dane)
-- **Scraping**: Python + Playwright (tylko do generowania danych)
+## Dostępne zmienne środowiskowe
 
----
+- `BASE_URL` - URL strony z planami
+- `HEADLESS_MODE` - czy uruchamiać przeglądarkę w trybie headless (true/false)
+- `SCRAPING_DELAY` - opóźnienie między requestami w sekundach (domyślnie: 1)
+- `TIMEOUT` - timeout dla requestów w milisekundach (domyślnie: 15000)
+- `OUTPUT_FILE` - nazwa pliku wyjściowego (domyślnie: data.json)
+- `LOG_LEVEL` - poziom logowania (DEBUG, INFO, WARNING, ERROR)
+- `USER_AGENT` - User-Agent dla przeglądarki
 
-**Gotowe do użycia!** Skopiuj 4 pliki na dowolny hosting statyczny.
+## Użycie
+
+```bash
+python app.py
+```
+
+Aplikacja pobierze wszystkie dostępne plany lekcji i zapisze je do pliku JSON określonego w zmiennej `OUTPUT_FILE`.
+
+## Bez biblioteki dotenv
+
+Jeśli nie masz zainstalowanej biblioteki `python-dotenv`, aplikacja automatycznie użyje prostszej metody ładowania pliku `.env`. W takim przypadku usuń tę linię z `requirements.txt`:
+```
+python-dotenv>=1.0.0
+```
+
+## Struktura wyjściowa
+
+Plik JSON zawiera:
+- `metadata` - informacje o scrapowaniu
+- `available_items` - listy dostępnych klas, nauczycieli i sal
+- `schedules` - plany lekcji pogrupowane według typu (klasa/nauczyciel/sala)

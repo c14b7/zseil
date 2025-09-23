@@ -1,0 +1,77 @@
+name: Zgłoszenie pomysłu
+description: Zaproponuj nową funkcję lub ulepszenie. Do zgłaszania błędów jest inny formularz.
+title: 'Pomysł: [krótki opis]'
+labels: ['enhancement', 'pomysł']
+assignees: ''
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dziękujemy za zgłoszenie pomysłu! Prosimy o wypełnienie poniższego formularza, abyśmy mogli ocenić i rozważyć Twoją propozycję.
+
+  - type: textarea
+    id: opis_pomyslu
+    attributes:
+      label: Opis pomysłu
+      description: Opisz szczegółowo swoją propozycję. Co chciałbyś dodać lub zmienić w systemie?
+      placeholder: Na przykład "Dodanie możliwości eksportu planu lekcji do formatu PDF" lub "Funkcja zapisywania ulubionych planów"
+      required: true
+
+  - type: textarea
+    id: uzasadnienie
+    attributes:
+      label: Uzasadnienie
+      description: Dlaczego ten pomysł jest potrzebny? Jaki problem rozwiązuje?
+      placeholder: Na przykład "Uczniowie często potrzebują mieć plan lekcji w wersji offline" lub "Aktualnie trzeba za każdym razem wyszukiwać te same plany"
+      required: true
+
+  - type: dropdown
+    id: docelowi_uzytkownicy
+    attributes:
+      label: Użytkownicy docelowi
+      description: Kto będzie głównie korzystać z tej funkcji?
+      options:
+        - Uczniowie
+        - Nauczyciele
+        - Wszyscy użytkownicy
+        - Administratorzy
+        - Inne (opisz w komentarzach)
+      required: true
+
+  - type: dropdown
+    id: priorytet
+    attributes:
+      label: Priorytet
+      description: Jak ważny jest ten pomysł według Ciebie?
+      options:
+        - Niski (nice to have)
+        - Średni (przydatne)
+        - Wysoki (bardzo potrzebne)
+        - Krytyczny (niezbędne)
+      required: true
+
+  - type: textarea
+    id: alternatywy
+    attributes:
+      label: Rozważane alternatywy
+      description: Czy rozważałeś inne sposoby rozwiązania tego problemu? Jeśli tak, opisz je.
+      placeholder: Na przykład "Można też używać zewnętrznych aplikacji, ale nie są one zintegrowane z systemem szkoły"
+      required: false
+
+  - type: textarea
+    id: dodatkowe_informacje
+    attributes:
+      label: Dodatkowe informacje
+      description: Inne informacje, które mogą być przydatne przy ocenie pomysłu.
+      placeholder: Linki do podobnych rozwiązań, zrzuty ekranu, szkice interfejsu, itp.
+      required: false
+
+  - type: checkboxes
+    id: zgody
+    attributes:
+      label: Potwierdzenia
+      options:
+        - label: Sprawdziłem, czy podobny pomysł nie został już zgłoszony
+          required: true
+        - label: Zgadzam się z [regulaminem zgłaszania pomysłów](https://github.com/c14b7/zseil/blob/main/REGULATIONS.md)
+          required: true

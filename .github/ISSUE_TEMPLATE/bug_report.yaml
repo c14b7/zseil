@@ -1,0 +1,79 @@
+name: Zgłoszenie błędu
+description: Zgłoś błąd lub problem. Do zgłaszania pomysłów jest inny formularz.
+title: 'Błąd: [krótki opis]'
+labels: ['bug']
+assignees: ''
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dziękujemy za zgłoszenie błędu! Prosimy o wypełnienie poniższego formularza, abyśmy mogli jak najszybciej rozwiązać problem.
+        
+        **Pamiętaj:** Przed zgłoszeniem sprawdź [regulamin](https://github.com/c14b7/zseil/blob/main/REGULATIONS.md) i upewnij się, że podobny błąd nie został już zgłoszony.
+
+  - type: textarea
+    id: opis
+    attributes:
+      label: Opis błędu
+      description: Opisz dokładnie napotkany problem lub błąd. Im więcej szczegółów podasz, tym łatwiej będzie nam go zidentyfikować i naprawić.
+      placeholder: Na przykład "Strona nie ładuje się poprawnie na urządzeniach mobilnych" lub "Funkcja X zwraca błąd Y podczas wykonywania Z"
+      required: true
+
+  - type: textarea
+    id: kroki
+    attributes:
+      label: Kroki do odtworzenia błędu
+      description: Opisz szczegółowo kroki, które należy wykonać, aby odtworzyć błąd.
+      placeholder: |
+        1. Otwórz stronę główną
+        2. Kliknij na przycisk 'Zaloguj'
+        3. Wprowadź nieprawidłowe dane logowania
+        4. Naciśnij 'Enter'
+      required: true
+
+  - type: textarea
+    id: oczekiwane_zachowanie
+    attributes:
+      label: Oczekiwane zachowanie
+      description: Opisz, jak system powinien działać w normalnych warunkach.
+      placeholder: Na przykład "System powinien wyświetlić komunikat o błędnych danych logowania"
+      required: true
+
+  - type: textarea
+    id: aktualne_zachowanie
+    attributes:
+      label: Aktualne (nieprawidłowe) zachowanie
+      description: Opisz, co dzieje się w rzeczywistości.
+      placeholder: Na przykład "Strona się zawiesza i nie reaguje na żadne działania"
+      required: true
+
+  - type: input
+    id: urzadzenie
+    attributes:
+      label: Urządzenie i przeglądarka
+      description: Podaj informacje o urządzeniu i przeglądarce, na której wystąpił błąd.
+      placeholder: Na przykład "iPhone 12, iOS 14.4, Safari" lub "Windows 10, Chrome 89"
+      required: false
+
+  - type: dropdown
+    id: czestotliwosc
+    attributes:
+      label: Częstotliwość wystąpienia
+      description: Jak często występuje ten błąd?
+      options:
+        - Zawsze (za każdym razem)
+        - Często (większość prób)
+        - Czasami (sporadycznie)
+        - Raz (nie udało się powtórzyć)
+      required: true
+
+  - type: checkboxes
+    id: zgody
+    attributes:
+      label: Potwierdzenia
+      options:
+        - label: Sprawdziłem, czy podobny błąd nie został już zgłoszony
+          required: true
+        - label: Zgadzam się z [regulaminem zgłaszania błędów](https://github.com/c14b7/zseil/blob/main/REGULATIONS.md)
+          required: true
+    

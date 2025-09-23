@@ -1,11 +1,26 @@
-# Pliki potrzebne tylko lokalnie do generowania danych
-app.py
+# Pliki środowiskowe
+.env
 
-# Logi Python
-*.log
+# Pliki Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
 
-# Pliki tymczasowe
+# Logi
+*.log
+
+# Dane tymczasowe
+temp/
+tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
 Thumbs.db

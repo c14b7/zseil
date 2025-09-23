@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class ScheduleScraper:
     def __init__(self):
-        self.base_url = "http://zseil.ikkm.pl/PLAN"
+        self.base_url = "placeholder"  # Zastąp rzeczywistym URL
         self.teacher_mapping = {}
         
     def test_connection(self):

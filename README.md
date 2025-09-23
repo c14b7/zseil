@@ -1,79 +1,44 @@
-# Plan Lekcji ZSEIL
+> [!IMPORTANT]
+> Plan lekcji klas 1IJ oraz 2IJ nie pojawia się w naszym systemie ze względu na jego brak w naszym źródle danych
 
-Aplikacja do przeglądania planu lekcji Zespołu Szkół Ekonomiczno-Informatycznych im. prof. Janusza Groszkowskiego w Łomży.
+# Plan lekcji
 
-## 🚀 Demo
+Następca Super Clever Planu
 
-Aplikacja jest dostępna pod adresem: [https://c14b7.github.io/zsei/](https://c14b7.github.io/zsei/)
+## 📝 Informacje prawne
+System przeznaczony wyłącznie dla uczniów i pracowników szkoły, dla której system jest udostępniony.
+Dane pobierane są z otwartego i ogólnodostępnego systemu.
 
-## 🔧 Jak to działa
+## ⚠️ Zastrzeżenie
+Nie gwarantujemy aktualności danych, lecz staramy się ją zapewnić w miarę możliwości.
 
-Aplikacja używa GitHub Actions do automatycznego pobierania danych z oficjalnej strony ZSEIL i generowania statycznych plików JSON, które są następnie hostowane na GitHub Pages.
+## ℹ️ Informacje
+Program został stworzony w celu ułatwienia korzystania z planu lekcji, wyszukiwania sal oraz nauczycieli.> Plan lekcji klas 1IJ oraz 2IJ nie pojawia się w naszym systemie ze względu na jego brak w naszym źródle danych
 
-### Aktualizacja danych
+# Plan lekcji
 
-- **Automatycznie**: Codziennie o 8:00 (czasu polskiego)
-- **Ręcznie**: Przez zakładkę "Actions" w repozytorium GitHub
+Następca Super CLever Planu
 
-### Technologie
+## 📝 Informacje prawne
+System przeznaczony wyłącznie dla ucznió i pracownikó szkoły dla której system jest udostępniony.
+Dane pobierane są z otwartego i ogólnodostępnego systemu.
 
-- **Frontend**: HTML, CSS, JavaScript (vanilla)
-- **Scraping**: Python + Playwright
-- **Hosting**: GitHub Pages
-- **CI/CD**: GitHub Actions
+## ⚠️ Zastrzenie
+Nie gwarantujemy aktualności danych, lecz staramy się ją zapewnić w miarę możliwości.
 
-## 📁 Struktura plików
+## ℹ️ Informacje
+Program został stworzony w celu ułątweiani korzystania z planu lekci, wyszukawieni sal oraz nauczycieli.
 
-```
-├── .github/workflows/
-│   └── update-schedule.yml    # GitHub Actions workflow
-├── data/                      # Dane JSON (generowane automatycznie)
-│   ├── available_items.json   # Lista klas, nauczycieli, sal
-│   ├── metadata.json          # Metadane ostatniej aktualizacji
-│   └── schedule_*.json        # Plany lekcji
-├── data_scraper.py            # Skrypt do pobierania danych
-├── index.html                 # Strona główna
-├── script.js                  # Logika aplikacji
-├── style.css                  # Stylowanie
-└── README.md                  # Ten plik
-```
 
-## 🛠️ Uruchamianie lokalnie
 
-1. Sklonuj repozytorium:
-```bash
-git clone https://github.com/c14b7/zsei.git
-cd zsei
-```
 
-2. Zainstaluj zależności:
-```bash
-pip install playwright requests beautifulsoup4
-playwright install chromium
-```
+## Roadmap
 
-3. Pobierz dane:
-```bash
-python data_scraper.py
-```
+### 🟩 Gotowe do wprowadzenia:
+- Naprawa godzin
 
-4. Uruchom lokalny serwer HTTP:
-```bash
-python -m http.server 8000
-```
+### 🟨 W trakcie:
+- Filtrowanie planu na podstawie grup
 
-5. Otwórz [http://localhost:8000](http://localhost:8000) w przeglądarce
-
-## 📝 Licencja
-
-Projekt jest udostępniony na licencji MIT. Dane pochodzą z oficjalnej strony ZSEIL.
-
-## ⚠️ Zastrzeżenia
-
-- Aplikacja pobiera dane z publicznej strony ZSEIL
-- Nie gwarantujemy 100% dokładności danych
-- W przypadku problemów z oficjalną stroną, aplikacja może pokazywać stare dane
-
-## 🤝 Współpraca
-
-Zgłaszaj błędy i sugestie przez [Issues](https://github.com/c14b7/zsei/issues) w GitHub.
+### 🟥 Backlog:
+- Obejście braku planu dla klas 1IJ, 2IJ
