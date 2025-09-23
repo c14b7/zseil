@@ -66,7 +66,7 @@ class ScheduleApp {
         this.allData = {
             metadata: {
                 scraped_at: new Date().toISOString(),
-                source_url: 'http://zseil.ikkm.pl/PLAN',
+                source_url: 'http://dane-dane.pl/PLAN',
                 total_classes: 11,
                 total_teachers: 4,
                 total_rooms: 10,
@@ -380,7 +380,7 @@ class ScheduleApp {
         
         // Godziny lekcji
         const lessonTimes = [
-            '7:10-7:55', '7:45-8:30', '08:35-9:20', '9:25-10:10',
+            '7:45-8:30', '08:35-9:20', '9:25-10:10',
             '10:20-11:05', '11:20-12:05', '12:15-13:00', '13:20-14:05',
             '14:15-15:00', '15:05-15:50', '15:55-16:40', '16:45-17:30',
             '17:35-18:20'
@@ -519,5 +519,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Debug info
 console.log('📋 Plan Lekcji ZSEIL - Wersja JavaScript Only');
 console.log('📄 Dane z pliku: data.json');
-console.log('🔗 GitHub Repository: https://github.com/c14b7/zsei');
+console.log('🔗 GitHub Repository: https://github.com/c14b7/zseil');
 console.log('⚡ Powered by Pure JavaScript + JSON');

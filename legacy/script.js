@@ -345,5 +345,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Debug info
 console.log('📋 Plan Lekcji ZSEIL - Wersja Flask');
-console.log('🔗 GitHub Repository: https://github.com/c14b7/zsei');
+console.log('🔗 GitHub Repository: https://github.com/c14b7/zseil');
 console.log('⚡ Powered by Flask + Playwright');
