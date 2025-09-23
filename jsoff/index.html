@@ -9,7 +9,21 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-    <div class="container">
+    <!-- Banner z problemem technicznym -->
+    <div id="technical-issue-banner" class="technical-banner">
+        <div class="technical-banner-content">
+            <i data-lucide="alert-triangle" class="banner-icon"></i>
+            <div class="banner-text">
+                <strong>Problem techniczny</strong>
+                <span id="banner-message">Z powodów technicznych część danych została zastąpiona tymczasowymi wartościami. Działamy w celu naprawy.</span>
+            </div>
+            <button id="close-banner" class="close-banner-btn" aria-label="Zamknij banner">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="container"> 
         <header>
             <h1>Plan Lekcji</h1>
             <p>Powiedzmy że coś jak Super Clever ale nowe</p>
@@ -101,7 +115,7 @@
                 </div>
                 <div class="app-version">
                     <span class="version-label">Wersja:</span>
-                    <span class="version-number">v1.5.1beta hotfix 0.3</span>
+                    <span class="version-number">v1.5.1beta hotfix 0.5 - tech</span>
                 </div>
             </div>
         </footer>

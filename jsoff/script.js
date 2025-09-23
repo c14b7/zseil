@@ -3,6 +3,78 @@
  * Pobiera dane z pliku data.json (generowanego przez app.py)
  */
 
+// Inicjalizacja bannera z problemem technicznym
+document.addEventListener('DOMContentLoaded', function() {
+    initTechnicalBanner();
+});
+
+function initTechnicalBanner() {
+    const banner = document.getElementById('technical-issue-banner');
+    const closeBtn = document.getElementById('close-banner');
+    const body = document.body;
+    
+    if (!banner) return;
+    
+    // Dodaj klasę do body aby ustawić padding
+    body.classList.add('banner-visible');
+    
+    // Inicjalizuj ikony Lucide
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+    
+    // Obsługa zamykania bannera
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            closeTechnicalBanner();
+        });
+    }
+    
+    // Zamknij banner po naciśnięciu Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && banner.style.display !== 'none') {
+            closeTechnicalBanner();
+        }
+    });
+}
+
+function closeTechnicalBanner() {
+    const banner = document.getElementById('technical-issue-banner');
+    const body = document.body;
+    
+    if (banner) {
+        banner.style.animation = 'slideUp 0.3s ease-out forwards';
+        
+        setTimeout(() => {
+            banner.style.display = 'none';
+            body.classList.remove('banner-visible');
+        }, 300);
+    }
+}
+
+function updateBannerMessage(message) {
+    const messageElement = document.getElementById('banner-message');
+    if (messageElement) {
+        messageElement.textContent = message;
+    }
+}
+
+function showTechnicalBanner() {
+    const banner = document.getElementById('technical-issue-banner');
+    const body = document.body;
+    
+    if (banner) {
+        banner.style.display = 'block';
+        banner.style.animation = 'slideDown 0.3s ease-out forwards';
+        body.classList.add('banner-visible');
+        
+        // Inicjalizuj ikony Lucide jeśli jeszcze nie zostały zainicjalizowane
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }
+}
+
 class ScheduleApp {
     constructor() {
         this.allData = null;
@@ -397,7 +469,7 @@ class ScheduleApp {
         });
         
         // Generuj wiersze tabeli
-        for (let lessonIndex = 0; lessonIndex < Math.min(maxLessons, 10); lessonIndex++) {
+        for (let lessonIndex = 0; lessonIndex < Math.min(maxLessons, 15); lessonIndex++) {
             const row = document.createElement('tr');
             
             // Numer lekcji i godzina
