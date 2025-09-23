@@ -2,10 +2,3 @@ contact_links:
   - name: 📖 Regulamin zgłoszeń
     url: https://github.com/c14b7/zseil/blob/main/REGULATIONS.md
     about: Przeczytaj regulamin przed zgłaszaniem błędów i pomysłów
-  - name: 📚 Dokumentacja
-    url: https://github.com/c14b7/zseil/blob/main/README.md
-    about: Sprawdź dokumentację projektu i FAQ
-  - name: 💬 Dyskusje
-    url: https://github.com/c14b7/zseil/discussions
-    about: Zadawaj pytania i dyskutuj o projekcie
-
