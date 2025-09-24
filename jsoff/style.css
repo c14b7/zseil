@@ -11,6 +11,7 @@
     box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
     border-bottom: 3px solid #991b1b;
     animation: slideDown 0.3s ease-out;
+    display: none;
 }
 
 .technical-banner-content {
