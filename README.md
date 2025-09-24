@@ -1,19 +1,6 @@
 > [!IMPORTANT]
 > Plan lekcji klas 1IJ oraz 2IJ nie pojawia się w naszym systemie ze względu na jego brak w naszym źródle danych
 
-# Plan lekcji
-
-Następca Super Clever Planu
-
-## 📝 Informacje prawne
-System przeznaczony wyłącznie dla uczniów i pracowników szkoły, dla której system jest udostępniony.
-Dane pobierane są z otwartego i ogólnodostępnego systemu.
-
-## ⚠️ Zastrzeżenie
-Nie gwarantujemy aktualności danych, lecz staramy się ją zapewnić w miarę możliwości.
-
-## ℹ️ Informacje
-Program został stworzony w celu ułatwienia korzystania z planu lekcji, wyszukiwania sal oraz nauczycieli.> Plan lekcji klas 1IJ oraz 2IJ nie pojawia się w naszym systemie ze względu na jego brak w naszym źródle danych
 
 # Plan lekcji
 
