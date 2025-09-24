@@ -278,32 +278,43 @@ class ScheduleApp {
         const classSelector = document.getElementById('class-selector');
         const teacherSelector = document.getElementById('teacher-selector');
         const roomSelector = document.getElementById('room-selector');
+        const groupSelector = document.getElementById('group-selector');
         const loadBtn = document.getElementById('load-btn');
         
-        // Gdy wybieramy klasę, zerujemy pozostałe
+        // Gdy wybieramy klasę, zerujemy pozostałe i pokazujemy grupy
         classSelector.addEventListener('change', (e) => {
             if (e.target.value) {
                 teacherSelector.value = '';
                 roomSelector.value = '';
+                this.showGroupFilter(e.target.value);
+            } else {
+                this.hideGroupFilter();
             }
             this.updateLoadButton();
         });
         
-        // Gdy wybieramy nauczyciela, zerujemy pozostałe
+        // Gdy wybieramy nauczyciela, zerujemy pozostałe i ukrywamy grupy
         teacherSelector.addEventListener('change', (e) => {
             if (e.target.value) {
                 classSelector.value = '';
                 roomSelector.value = '';
+                this.hideGroupFilter();
             }
             this.updateLoadButton();
         });
         
-        // Gdy wybieramy salę, zerujemy pozostałe
+        // Gdy wybieramy salę, zerujemy pozostałe i ukrywamy grupy
         roomSelector.addEventListener('change', (e) => {
             if (e.target.value) {
                 classSelector.value = '';
                 teacherSelector.value = '';
+                this.hideGroupFilter();
             }
+            this.updateLoadButton();
+        });
+        
+        // Event listener dla grup
+        groupSelector.addEventListener('change', () => {
             this.updateLoadButton();
         });
         
@@ -313,7 +324,7 @@ class ScheduleApp {
         });
         
         // Enter w selektorach
-        [classSelector, teacherSelector, roomSelector].forEach(selector => {
+        [classSelector, teacherSelector, roomSelector, groupSelector].forEach(selector => {
             selector.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     this.loadSchedule();
@@ -331,6 +342,63 @@ class ScheduleApp {
         // Przycisk aktywny tylko gdy wybrany jest jeden element
         const hasSelection = classSelector.value || teacherSelector.value || roomSelector.value;
         loadBtn.disabled = !hasSelection || this.loading;
+    }
+    
+    showGroupFilter(className) {
+        const groupSection = document.getElementById('group-filter-section');
+        const groupSelector = document.getElementById('group-selector');
+        
+        // Pobierz dostępne grupy dla wybranej klasy
+        const groups = this.getAvailableGroups(className);
+        
+        if (groups.length > 0) {
+            // Wyczyść i wypełnij selector grup
+            groupSelector.innerHTML = '<option value="">Wszystkie grupy</option>';
+            groups.forEach(group => {
+                const option = document.createElement('option');
+                option.value = group;
+                option.textContent = group;
+                groupSelector.appendChild(option);
+            });
+            
+            // Pokaż sekcję grup
+            groupSection.style.display = 'block';
+            console.log(`📋 Znaleziono grupy dla klasy ${className}:`, groups);
+        } else {
+            this.hideGroupFilter();
+        }
+    }
+    
+    hideGroupFilter() {
+        const groupSection = document.getElementById('group-filter-section');
+        const groupSelector = document.getElementById('group-selector');
+        
+        groupSection.style.display = 'none';
+        groupSelector.value = '';
+    }
+    
+    getAvailableGroups(className) {
+        if (!this.allData || !this.allData.schedules || !this.allData.schedules.klasa || !this.allData.schedules.klasa[className]) {
+            return [];
+        }
+        
+        const schedule = this.allData.schedules.klasa[className];
+        const groups = new Set();
+        
+        // Przeszukaj wszystkie lekcje i znajdź unikalne grupy
+        for (const daySchedule of Object.values(schedule)) {
+            for (const lessons of daySchedule) {
+                for (const lesson of lessons) {
+                    // Szukaj grup w nazwach przedmiotów (EPM1, EPM2, etc.)
+                    const subject = lesson.subject || '';
+                    if (/^[A-Z]+\d+$/.test(subject)) {
+                        groups.add(subject);
+                    }
+                }
+            }
+        }
+        
+        return Array.from(groups).sort();
     }
     
     populateAllSelectors() {
@@ -485,8 +553,17 @@ class ScheduleApp {
                 
                 const daySchedule = this.currentSchedule[day];
                 if (daySchedule && daySchedule[lessonIndex] && daySchedule[lessonIndex].length > 0) {
+                    // Filtruj lekcje na podstawie wybranej grupy (tylko dla klas)
+                    let lessonsToShow = daySchedule[lessonIndex];
+                    if (type === 'klasa') {
+                        const selectedGroup = document.getElementById('group-selector').value;
+                        if (selectedGroup) {
+                            lessonsToShow = lessonsToShow.filter(lesson => lesson.subject === selectedGroup);
+                        }
+                    }
+                    
                     // Może być więcej niż jedna lekcja w tym czasie (grupy)
-                    daySchedule[lessonIndex].forEach((lesson, index) => {
+                    lessonsToShow.forEach((lesson, index) => {
                         if (index > 0) {
                             cell.appendChild(document.createElement('hr'));
                         }
