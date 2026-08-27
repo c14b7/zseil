@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Lekcji - ZSEIL</title>
     <link rel="stylesheet" href="style.css">
@@ -9,6 +10,7 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
+    <div id="dynamic-tile-container"></div>
     <!-- Banner z problemem technicznym -->
     <div id="technical-issue-banner" class="technical-banner">
         <div class="technical-banner-content">
@@ -133,5 +135,6 @@
             lucide.createIcons();
         }
     </script>
+    <script src="dynamic.js"></script>
 </body>
 </html>
