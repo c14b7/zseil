@@ -10,9 +10,8 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-    <div id="dynamic-tile-container"></div>
-    <!-- Banner z problemem technicznym -->
-    <div id="technical-issue-banner" class="technical-banner">
+    <div id="technical-banner-container"></div> <!--dane z appwrite-->
+    <div id="technical-issue-banner" class="technical-banner"> <!--staly, bez appwrite-->
         <div class="technical-banner-content">
             <i data-lucide="alert-triangle" class="banner-icon"></i>
             <div class="banner-text">
@@ -26,6 +25,7 @@
     </div>
     
     <div class="container"> 
+        <div id="info-banner-container"></div>
         <header>
             <h1>Plan Lekcji</h1>
             <p>Powiedzmy że coś jak Super Clever ale nowe</p>
