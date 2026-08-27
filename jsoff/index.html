@@ -28,7 +28,7 @@
             <h1>Plan Lekcji</h1>
             <p>Powiedzmy że coś jak Super Clever ale nowe</p>
             <div id="data-status" class="data-status">
-                <span id="data-info">⏳ Ładowanie danych...</span>
+                <span id="data-info">Ładowanie danych...</span>
             </div>
         </header>
         
@@ -64,7 +64,7 @@
             
             <div id="loading" class="loading hidden">
                 <div class="spinner"></div>
-                <p>⏳ Ładowanie planu...</p>
+                <p>Ładowanie planu...</p>
             </div>
             
             <div id="schedule-container" class="schedule-container">
@@ -72,7 +72,7 @@
                 <table id="schedule-table" class="schedule-table hidden">
                     <thead>
                         <tr>
-                            <th>🕐 Godz</th>
+                            <th>Godz</th>
                             <th>Pon</th>
                             <th>Wt</th>
                             <th>Śr</th>
@@ -105,7 +105,7 @@
             <div class="app-info">
                 <div class="app-links">
                     <a href="https://github.com/c14b7/zseil" target="_blank" class="github-link">
-                        <i data-lucide="github"></i>
+                        <i data-lucide="folder-git-2"></i>
                         GitHub
                     </a>
                     <a href="https://github.com/c14b7/zseil/issues" target="_blank" class="feedback-link">
@@ -113,9 +113,15 @@
                         Zgłoś błąd
                     </a>
                 </div>
+                <div class="app-links">
+                    <a href="https://ko-fi.com/c14b7" target="_blank" class="ko-fi">
+                        <i data-lucide="badge-euro"></i>
+                        Dofinansuj
+                    </a>
+                </div>
                 <div class="app-version">
                     <span class="version-label">Wersja:</span>
-                    <span class="version-number">v1.5.1beta hotfix 0.6 - tech</span>
+                    <span class="version-number">v1.5.3 beta</span>
                 </div>
             </div>
         </footer>
@@ -123,7 +129,6 @@
     
     <script src="script.js"></script>
     <script>
-        // Inicjalizacja ikon Lucide (jeśli potrzebne)
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
