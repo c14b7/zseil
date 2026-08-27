@@ -1,31 +1,18 @@
-> [!IMPORTANT]
-> Plan lekcji klas 1IJ oraz 2IJ nie pojawia się w naszym systemie ze względu na jego brak w naszym źródle danych
+## Plan lekcji
 
+Gdyż, jak wszyscy wiemy, nasza wspaniała dyrekcja zablokowała Super Clever Plan, napisałem tę oto stronę.
 
-# Plan lekcji
+Czy działa? Mam nadzieję.
+Czy dane są aktualne? Staram się, aby były; na stronie jest wyświetlona data aktualizacji danych.
+Skąd dane? Powiedzmy, że... z zaufanego źródła.
+Co jeśli przestanie działać? Postaram się, aby nie przestało; końcem końców znów zacznie, jeśli przestanie.
 
-Następca Super CLever Planu
+### Masz pomysł na zmianę, zauważyłxś błąd, a może chcesz nowej funkcji?
+Zgłoś to w module Issues - ułatwi mi to pracę.
 
-## 📝 Informacje prawne
-System przeznaczony wyłącznie dla ucznió i pracownikó szkoły dla której system jest udostępniony.
-Dane pobierane są z otwartego i ogólnodostępnego systemu.
+### Podoba się? Możesz projekt dofinansować!
+Koszty utrzymania tego (i nie tylko) projektu ponoszę sam - więc za mały Tip będę wdzięczny ;)
 
-## ⚠️ Zastrzenie
-Nie gwarantujemy aktualności danych, lecz staramy się ją zapewnić w miarę możliwości.
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U4K525VKKI)
 
-## ℹ️ Informacje
-Program został stworzony w celu ułątweiani korzystania z planu lekci, wyszukawieni sal oraz nauczycieli.
-
-
-
-
-## Roadmap
-
-### 🟩 Gotowe do wprowadzenia:
-- Naprawa godzin
-
-### 🟨 W trakcie:
-- Filtrowanie planu na podstawie grup
-
-### 🟥 Backlog:
-- Obejście braku planu dla klas 1IJ, 2IJ
+Z góry dzięki!
