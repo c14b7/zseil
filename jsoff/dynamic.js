@@ -1,8 +1,4 @@
-// Konfiguracja Twojej bazy danych Appwrite
-const APPWRITE_CONFIG = {
-    e
-    collectionId: 'info_up'
-};
+
 const APPWRITE_CONFIG = {
     endpoint: 'https://fra.cloud.appwrite.io/v1', 
     projectId: '687abe96000d2d31f914', 
@@ -20,9 +16,8 @@ const client = new Client()
 
 const databases = new Databases(client);
 
-// ==========================================
-// 1. BANNER INFORMACYJNY (STAŁY NAD PLANEM)
-// ==========================================
+
+// BANNER INFORMACYJNY (STAŁY NAD PLANEM)
 async function loadInfoBanner() {
     const container = document.getElementById('info-banner-container');
     if (!container) return;
@@ -72,9 +67,8 @@ async function loadInfoBanner() {
     }
 }
 
-// ==========================================
-// 2. BANNER TECHNICZNY (ZAMYKANY NA GÓRZE)
-// ==========================================
+
+// BANNER TECHNICZNY (ZAMYKANY NA GÓRZE)
 async function loadTechBanner() {
     const container = document.getElementById('technical-banner-container');
     if (!container) return;
@@ -127,7 +121,7 @@ async function loadTechBanner() {
     }
 }
 
-// Escapowanie znaków pod kątem bezpieczeństwa
+
 function escapeHTML(str) {
     if (typeof str !== 'string') return str;
     return str.replace(/[&<>'"]/g, tag => ({
@@ -135,7 +129,7 @@ function escapeHTML(str) {
     }[tag] || tag));
 }
 
-// Inicjalizacja obu bannerów i ikon Lucide
+
 document.addEventListener('DOMContentLoaded', async () => {
     await Promise.all([loadInfoBanner(), loadTechBanner()]);
 
