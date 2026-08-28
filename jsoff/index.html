@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan Lekcji - ZSEIL</title>
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
     <!-- Dodajemy Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -23,17 +24,19 @@
             </button>
         </div>
     </div>
-    
+
     <div class="container"> 
         <div id="info-banner-container"></div>
         <header>
-            <h1>Plan Lekcji</h1>
+            <div style="text-align: center;">
+                <img src="logotype.svg" alt="Logo" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+            </div>
             <p>Powiedzmy że coś jak Super Clever ale nowe</p>
             <div id="data-status" class="data-status">
                 <span id="data-info">Ładowanie danych...</span>
             </div>
         </header>
-        
+
         <main>
             <div class="controls">
                 <div class="filter-grid">
@@ -56,19 +59,19 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="action-container">
                     <button id="load-btn" disabled>
                          Pokaż plan
                     </button>
                 </div>
             </div>
-            
+
             <div id="loading" class="loading hidden">
                 <div class="spinner"></div>
                 <p>Ładowanie planu...</p>
             </div>
-            
+
             <div id="schedule-container" class="schedule-container">
                 <div id="error-message" class="error-message hidden"></div>
                 <table id="schedule-table" class="schedule-table hidden">
@@ -87,7 +90,7 @@
                 </table>
             </div>
         </main>
-        
+
         <footer class="footer">
             <div class="metadata" id="metadata-info">
                 <p>
@@ -103,7 +106,7 @@
                     <span id="total-schedules">0</span>
                 </p>
             </div>
-            
+
             <div class="app-info">
                 <div class="app-links">
                     <a href="https://github.com/c14b7/zseil" target="_blank" class="github-link">
@@ -128,7 +131,7 @@
             </div>
         </footer>
     </div>
-    
+
     <script src="script.js"></script>
     <script>
         if (typeof lucide !== 'undefined') {
