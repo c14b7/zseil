@@ -3,8 +3,11 @@
 Gdyż, jak wszyscy wiemy, nasza wspaniała dyrekcja zablokowała Super Clever Plan, napisałem tę oto stronę.
 
 Czy działa? Mam nadzieję.
+
 Czy dane są aktualne? Staram się, aby były; na stronie jest wyświetlona data aktualizacji danych.
+
 Skąd dane? Powiedzmy, że... z zaufanego źródła.
+
 Co jeśli przestanie działać? Postaram się, aby nie przestało; końcem końców znów zacznie, jeśli przestanie.
 
 ### Masz pomysł na zmianę, zauważyłxś błąd, a może chcesz nowej funkcji?
