@@ -126,7 +126,7 @@
                 </div>
                 <div class="app-version">
                     <span class="version-label">Wersja:</span>
-                    <span class="version-number">v1.5.3 beta</span>
+                    <span class="version-number">v1.5.3c beta</span>
                 </div>
             </div>
         </footer>
@@ -139,5 +139,13 @@
         }
     </script>
     <script src="dynamic.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+
 </body>
 </html>
