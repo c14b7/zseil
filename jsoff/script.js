@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     initTechnicalBanner();
 });
@@ -10,22 +9,18 @@ function initTechnicalBanner() {
     
     if (!banner) return;
     
-    // Dodaj klasę do body aby ustawić padding
     body.classList.add('banner-visible');
     
-    // Inicjalizuj ikony Lucide
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
     
-    // Obsługa zamykania bannera
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             closeTechnicalBanner();
         });
     }
     
-    // Zamknij banner po naciśnięciu Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && banner.style.display !== 'none') {
             closeTechnicalBanner();
@@ -63,7 +58,6 @@ function showTechnicalBanner() {
         banner.style.animation = 'slideDown 0.3s ease-out forwards';
         body.classList.add('banner-visible');
         
-        // Inicjalizuj ikony Lucide jeśli jeszcze nie zostały zainicjalizowane
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
@@ -80,24 +74,15 @@ class ScheduleApp {
     }
     
     async init() {
-        console.log('🚀 Inicjalizacja aplikacji planu lekcji (JavaScript Only)');
-        
-        // Załaduj dane z pliku JSON
         await this.loadDataFromJSON();
-        
-        // Ustaw event listenery
-        this.setupEventListeners();
-        
-        // Załaduj wszystkie listy
         this.populateAllSelectors();
-        
-        // Wyświetl metadane
+        this.setupEventListeners();
         this.displayMetadata();
+        this.applyUrlParams();
     }
     
     async loadDataFromJSON() {
         try {
-            console.log('📡 Ładowanie danych z data.json...');
             this.updateDataStatus('Ładowanie danych z JSON...', 'loading');
             
             const response = await fetch('./data.json');
@@ -108,20 +93,11 @@ class ScheduleApp {
             
             this.allData = await response.json();
             
-            console.log('✅ Dane JSON załadowane:', {
-                klasy: this.allData.available_items?.klasa?.length || 0,
-                nauczyciele: this.allData.available_items?.nauczyciel?.length || 0,
-                sale: this.allData.available_items?.sala?.length || 0,
-                plany_klas: Object.keys(this.allData.schedules?.klasa || {}).length,
-                plany_nauczycieli: Object.keys(this.allData.schedules?.nauczyciel || {}).length,
-                plany_sal: Object.keys(this.allData.schedules?.sala || {}).length
-            });
-            
             this.updateDataStatus('Dane załadowane z JSON', 'success');
             this.enableControls();
             
         } catch (error) {
-            console.error('❌ Błąd ładowania danych JSON:', error);
+            console.error('Błąd ładowania danych JSON:', error);
             this.updateDataStatus('Błąd ładowania JSON - używam danych testowych', 'error');
             this.loadFallbackData();
             this.enableControls();
@@ -129,7 +105,6 @@ class ScheduleApp {
     }
     
     loadFallbackData() {
-        console.log('⚠️ Ładowanie danych przykładowych');
         this.allData = {
             metadata: {
                 scraped_at: new Date().toISOString(),
@@ -153,7 +128,6 @@ class ScheduleApp {
             }
         };
         
-        // Wygeneruj przykładowe plany dla pierwszych kilku klas
         ['1A', '1C', '2A'].forEach(className => {
             this.allData.schedules.klasa[className] = this.generateMockSchedule(className);
         });
@@ -217,120 +191,125 @@ class ScheduleApp {
         const classSelector = document.getElementById('class-selector');
         const teacherSelector = document.getElementById('teacher-selector');
         const roomSelector = document.getElementById('room-selector');
-        const loadBtn = document.getElementById('load-btn');
         
-        classSelector.disabled = false;
-        teacherSelector.disabled = false;
-        roomSelector.disabled = false;
-        loadBtn.disabled = false;
-        
-        // Zaktualizuj placeholder
-        classSelector.innerHTML = '<option value="">Wybierz klasę...</option>';
-        teacherSelector.innerHTML = '<option value="">Wybierz nauczyciela...</option>';
-        roomSelector.innerHTML = '<option value="">Wybierz salę...</option>';
+        if (classSelector) classSelector.disabled = false;
+        if (teacherSelector) teacherSelector.disabled = false;
+        if (roomSelector) roomSelector.disabled = false;
     }
     
     updateDataStatus(message, status = '') {
         const dataInfo = document.getElementById('data-info');
         const dataStatus = document.getElementById('data-status');
         
-        dataInfo.textContent = message;
-        
-        // Usuń poprzednie klasy statusu
-        dataStatus.className = 'data-status';
-        
-        // Dodaj nową klasę statusu
-        if (status) {
-            dataStatus.classList.add(status);
+        if (dataInfo) dataInfo.textContent = message;
+        if (dataStatus) {
+            dataStatus.className = 'data-status';
+            if (status) dataStatus.classList.add(status);
         }
     }
     
     displayMetadata() {
-        if (!this.allData || !this.allData.metadata) {
-            return;
-        }
+        if (!this.allData || !this.allData.metadata) return;
         
         const metadata = this.allData.metadata;
-        
-        // Status danych
         const loadedStatus = document.getElementById('data-loaded-status');
-        loadedStatus.textContent = metadata.errors_count === 0 ? 'Wszystkie dane OK' : `${metadata.errors_count} błędów`;
-        
-        // Data aktualizacji
         const lastUpdate = document.getElementById('last-update');
-        if (metadata.scraped_at) {
-            const date = new Date(metadata.scraped_at);
-            lastUpdate.textContent = date.toLocaleString('pl-PL');
-        }
-        
-        // Liczba planów
         const totalSchedules = document.getElementById('total-schedules');
-        totalSchedules.textContent = metadata.total_schedules_scraped || 0;
+        
+        if (loadedStatus) loadedStatus.textContent = metadata.errors_count === 0 ? 'Wszystkie dane OK' : `${metadata.errors_count} błędów`;
+        if (lastUpdate && metadata.scraped_at) {
+            lastUpdate.textContent = new Date(metadata.scraped_at).toLocaleString('pl-PL');
+        }
+        if (totalSchedules) totalSchedules.textContent = metadata.total_schedules_scraped || 0;
     }
     
     setupEventListeners() {
-        // Event listenery dla wszystkich selektorów
         const classSelector = document.getElementById('class-selector');
         const teacherSelector = document.getElementById('teacher-selector');
         const roomSelector = document.getElementById('room-selector');
-        const loadBtn = document.getElementById('load-btn');
         
-        // Gdy wybieramy klasę, zerujemy pozostałe
-        classSelector.addEventListener('change', (e) => {
-            if (e.target.value) {
-                teacherSelector.value = '';
-                roomSelector.value = '';
-            }
-            this.updateLoadButton();
-        });
-        
-        // Gdy wybieramy nauczyciela, zerujemy pozostałe
-        teacherSelector.addEventListener('change', (e) => {
-            if (e.target.value) {
-                classSelector.value = '';
-                roomSelector.value = '';
-            }
-            this.updateLoadButton();
-        });
-        
-        // Gdy wybieramy salę, zerujemy pozostałe
-        roomSelector.addEventListener('change', (e) => {
-            if (e.target.value) {
-                classSelector.value = '';
-                teacherSelector.value = '';
-            }
-            this.updateLoadButton();
-        });
-        
-        // Przycisk ładowania planu
-        loadBtn.addEventListener('click', () => {
-            this.loadSchedule();
-        });
-        
-        // Enter w selektorach
-        [classSelector, teacherSelector, roomSelector].forEach(selector => {
-            selector.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
+        // Obsługa wyboru z listy i automatyczne ładowanie
+        if (classSelector) {
+            classSelector.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    if (teacherSelector) teacherSelector.value = '';
+                    if (roomSelector) roomSelector.value = '';
+                    this.updateUrlParam('class', e.target.value);
                     this.loadSchedule();
                 }
             });
-        });
-    }
-    
-    updateLoadButton() {
-        const classSelector = document.getElementById('class-selector');
-        const teacherSelector = document.getElementById('teacher-selector');
-        const roomSelector = document.getElementById('room-selector');
-        const loadBtn = document.getElementById('load-btn');
+        }
         
-        // Przycisk aktywny tylko gdy wybrany jest jeden element
-        const hasSelection = classSelector.value || teacherSelector.value || roomSelector.value;
-        loadBtn.disabled = !hasSelection || this.loading;
+        if (teacherSelector) {
+            teacherSelector.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    if (classSelector) classSelector.value = '';
+                    if (roomSelector) roomSelector.value = '';
+                    this.updateUrlParam('teacher', e.target.value);
+                    this.loadSchedule();
+                }
+            });
+        }
+        
+        if (roomSelector) {
+            roomSelector.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    if (classSelector) classSelector.value = '';
+                    if (teacherSelector) teacherSelector.value = '';
+                    this.updateUrlParam('room', e.target.value);
+                    this.loadSchedule();
+                }
+            });
+        }
     }
+
+    // Aktualizacja widocznych parametrów w adresie URL
+    updateUrlParam(key, value) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('class');
+        url.searchParams.delete('teacher');
+        url.searchParams.delete('room');
+        url.searchParams.set(key, value);
+        window.history.pushState({}, '', url);
+    }
+
+    // Ładowanie planu na podstawie parametrów URL po wejściu na stronę
+   applyUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    let classParam = params.get('class');
+    let teacherParam = params.get('teacher');
+    let roomParam = params.get('room');
+
+    // Jeśli brak parametrów w URL, użyj zapisanych ustawień domyślnych
+    if (!classParam && !teacherParam && !roomParam) {
+        const defaultType = localStorage.getItem('default_type');
+        const defaultValue = localStorage.getItem('default_value');
+
+        if (defaultType && defaultValue) {
+            if (defaultType === 'class') classParam = defaultValue;
+            if (defaultType === 'teacher') teacherParam = defaultValue;
+            if (defaultType === 'room') roomParam = defaultValue;
+        }
+    }
+
+    const classSelector = document.getElementById('class-selector');
+    const teacherSelector = document.getElementById('teacher-selector');
+    const roomSelector = document.getElementById('room-selector');
+
+    if (classParam && classSelector) {
+        classSelector.value = classParam;
+    } else if (teacherParam && teacherSelector) {
+        teacherSelector.value = teacherParam;
+    } else if (roomParam && roomSelector) {
+        roomSelector.value = roomParam;
+    }
+
+    if (classParam || teacherParam || roomParam) {
+        this.loadSchedule();
+    }
+}
     
     populateAllSelectors() {
-        console.log('🔄 Wypełnianie wszystkich list rozwijanych');
-        
         this.populateSelector('class-selector', 'klasa');
         this.populateSelector('teacher-selector', 'nauczyciel');
         this.populateSelector('room-selector', 'sala');
@@ -338,27 +317,20 @@ class ScheduleApp {
     
     populateSelector(selectorId, type) {
         const selector = document.getElementById(selectorId);
+        if (!selector || !this.allData || !this.allData.available_items || !this.allData.available_items[type]) return;
         
-        if (!this.allData || !this.allData.available_items || !this.allData.available_items[type]) {
-            console.warn(`⚠️ Brak danych dla typu: ${type}`);
-            return;
-        }
-        
-        // Wyczyść selector (zachowaj placeholder)
         const placeholder = selector.querySelector('option[value=""]');
         selector.innerHTML = '';
         if (placeholder) {
             selector.appendChild(placeholder);
         }
         
-        // Dodaj opcje
         const items = this.allData.available_items[type];
         items.forEach(item => {
             const option = document.createElement('option');
             option.value = item;
             option.textContent = item;
             
-            // Sprawdź czy dla tego elementu istnieje plan
             const hasSchedule = this.allData.schedules && 
                                this.allData.schedules[type] && 
                                this.allData.schedules[type][item];
@@ -370,44 +342,34 @@ class ScheduleApp {
             
             selector.appendChild(option);
         });
-        
-        console.log(`✅ Załadowano ${items.length} opcji dla typu ${type}`);
     }
     
     loadSchedule() {
-        if (this.loading) {
-            console.log('Trwa ładowanie...');
-            return;
-        }
+        if (this.loading) return;
         
-        // Określ który selektor jest wybrany
         const classSelector = document.getElementById('class-selector');
         const teacherSelector = document.getElementById('teacher-selector');
         const roomSelector = document.getElementById('room-selector');
         
         let type, item;
         
-        if (classSelector.value) {
+        if (classSelector && classSelector.value) {
             type = 'klasa';
             item = classSelector.value;
-        } else if (teacherSelector.value) {
+        } else if (teacherSelector && teacherSelector.value) {
             type = 'nauczyciel';
             item = teacherSelector.value;
-        } else if (roomSelector.value) {
+        } else if (roomSelector && roomSelector.value) {
             type = 'sala';
             item = roomSelector.value;
         } else {
-            this.showError('Wybierz klasę, nauczyciela lub salę.');
             return;
         }
-        
-        console.log(`Ładowanie planu z JSON: ${type} - ${item}`);
         
         this.setLoading(true);
         this.hideError();
         
         try {
-            // Pobierz plan z załadowanych danych JSON
             if (!this.allData || !this.allData.schedules || !this.allData.schedules[type]) {
                 throw new Error('Brak danych o planach w załadowanym JSON');
             }
@@ -418,13 +380,11 @@ class ScheduleApp {
                 throw new Error(`Brak planu dla "${item}" w kategorii "${type}"`);
             }
             
-            console.log('✅ Załadowano plan z JSON:', schedule);
-            
             this.currentSchedule = schedule;
             this.displaySchedule(type, item);
             
         } catch (error) {
-            console.error('❌ Błąd ładowania planu z JSON:', error);
+            console.error('Błąd ładowania planu z JSON:', error);
             this.showError(`Nie udało się załadować planu dla "${item}". ${error.message}`);
         } finally {
             this.setLoading(false);
@@ -432,12 +392,10 @@ class ScheduleApp {
     }
     
     displaySchedule(type, item) {
-        console.log(' Wyświetlanie planu lekcji');
-        
         const table = document.getElementById('schedule-table');
         const tbody = document.getElementById('schedule-body');
         
-        // Wyczyść tabelę
+        if (!tbody || !table) return;
         tbody.innerHTML = '';
         
         if (!this.currentSchedule) {
@@ -445,7 +403,6 @@ class ScheduleApp {
             return;
         }
         
-        // Godziny lekcji
         const lessonTimes = [
             '7:45-8:30', '08:35-9:20', '9:25-10:10',
             '10:20-11:05', '11:20-12:05', '12:15-13:00', '13:20-14:05',
@@ -455,7 +412,6 @@ class ScheduleApp {
         
         const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
         
-        // Znajdź maksymalną liczbę lekcji
         let maxLessons = 0;
         days.forEach(day => {
             if (this.currentSchedule[day]) {
@@ -463,24 +419,20 @@ class ScheduleApp {
             }
         });
         
-        // Generuj wiersze tabeli
         for (let lessonIndex = 0; lessonIndex < Math.min(maxLessons, 15); lessonIndex++) {
             const row = document.createElement('tr');
             
-            // Numer lekcji i godzina
             const lessonCell = document.createElement('td');
             lessonCell.className = 'lesson-number';
             lessonCell.textContent = `${lessonIndex + 1}. ${lessonTimes[lessonIndex] || ''}`;
             row.appendChild(lessonCell);
             
-            // Komórki dla każdego dnia
             days.forEach(day => {
                 const cell = document.createElement('td');
                 cell.className = 'lesson-cell';
                 
                 const daySchedule = this.currentSchedule[day];
                 if (daySchedule && daySchedule[lessonIndex] && daySchedule[lessonIndex].length > 0) {
-                    // Może być więcej niż jedna lekcja w tym czasie (grupy)
                     daySchedule[lessonIndex].forEach((lesson, index) => {
                         if (index > 0) {
                             cell.appendChild(document.createElement('hr'));
@@ -489,36 +441,29 @@ class ScheduleApp {
                         const lessonDiv = document.createElement('div');
                         lessonDiv.className = 'lesson';
                         
-                        // Dodaj atrybut data-subject dla kolorowania
                         if (lesson.subject) {
                             lessonDiv.setAttribute('data-subject', lesson.subject.toLowerCase());
                         }
                         
-                        // Przedmiot
                         const subjectDiv = document.createElement('div');
                         subjectDiv.className = 'subject';
                         subjectDiv.textContent = lesson.subject || '';
                         lessonDiv.appendChild(subjectDiv);
                         
-                        // Szczegóły w zależności od typu widoku
                         const detailsDiv = document.createElement('div');
                         detailsDiv.className = 'details';
                         
                         if (type === 'klasa') {
-                            // Dla klasy: pokaż nauczyciela i salę
                             if (lesson.teacher) detailsDiv.innerHTML += `<span class="teacher">${lesson.teacher}</span><br>`;
                             if (lesson.room) detailsDiv.innerHTML += `<span class="room">sala ${lesson.room}</span>`;
                         } else if (type === 'nauczyciel') {
-                            // Dla nauczyciela: pokaż klasę i salę
                             if (lesson.class) detailsDiv.innerHTML += `<span class="class">${lesson.class}</span><br>`;
                             if (lesson.room) detailsDiv.innerHTML += `<span class="room">sala ${lesson.room}</span>`;
                         } else if (type === 'sala') {
-                            // Dla sali: pokaż klasę i nauczyciela
                             if (lesson.class) detailsDiv.innerHTML += `<span class="class">${lesson.class}</span><br>`;
                             if (lesson.teacher) detailsDiv.innerHTML += `<span class="teacher">${lesson.teacher}</span>`;
                         }
                         
-                        // Grupa jeśli istnieje
                         if (lesson.group) {
                             const groupDiv = document.createElement('div');
                             groupDiv.className = 'group';
@@ -537,54 +482,40 @@ class ScheduleApp {
             tbody.appendChild(row);
         }
         
-        // Pokaż tabelę
         table.classList.remove('hidden');
-        
-        console.log(`Wyświetlono plan dla ${type}: ${item}`);
     }
     
     setLoading(loading) {
         this.loading = loading;
-        
         const loadingDiv = document.getElementById('loading');
-        const loadBtn = document.getElementById('load-btn');
         
-        if (loading) {
-            loadingDiv.classList.remove('hidden');
-            loadBtn.disabled = true;
-            loadBtn.textContent = '⏳ Ładowanie...';
-        } else {
-            loadingDiv.classList.add('hidden');
-            this.updateLoadButton(); // Użyj funkcji która sprawdza czy coś jest wybrane
-            loadBtn.textContent = '📋 Pokaż plan';
+        if (loadingDiv) {
+            if (loading) {
+                loadingDiv.classList.remove('hidden');
+            } else {
+                loadingDiv.classList.add('hidden');
+            }
         }
     }
     
     showError(message) {
-        console.error('💥 Błąd:', message);
-        
         const errorDiv = document.getElementById('error-message');
         const table = document.getElementById('schedule-table');
         
-        errorDiv.textContent = message;
-        errorDiv.classList.remove('hidden');
-        table.classList.add('hidden');
+        if (errorDiv) {
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+        }
+        if (table) table.classList.add('hidden');
     }
     
     hideError() {
         const errorDiv = document.getElementById('error-message');
-        errorDiv.classList.add('hidden');
+        if (errorDiv) errorDiv.classList.add('hidden');
     }
 }
 
-// Uruchom aplikację po załadowaniu DOM
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🌟 Uruchamianie aplikacji planu lekcji ZSEIL (JavaScript Only)');
     new ScheduleApp();
 });
 
-// Debug info
-console.log('📋 Plan Lekcji ZSEIL - Wersja JavaScript Only');
-console.log('📄 Dane z pliku: data.json');
-console.log('🔗 GitHub Repository: https://github.com/c14b7/zseil');
-console.log('⚡ Powered by Pure JavaScript + JSON');
