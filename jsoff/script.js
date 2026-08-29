@@ -1,9 +1,4 @@
-/**
- * Plan Lekcji ZSEIL - JavaScript Only Version
- * Pobiera dane z pliku data.json (generowanego przez app.py)
- */
 
-// Inicjalizacja bannera z problemem technicznym
 document.addEventListener('DOMContentLoaded', function() {
     initTechnicalBanner();
 });
@@ -381,7 +376,7 @@ class ScheduleApp {
     
     loadSchedule() {
         if (this.loading) {
-            console.log('⏳ Już trwa ładowanie...');
+            console.log('Trwa ładowanie...');
             return;
         }
         
@@ -406,7 +401,7 @@ class ScheduleApp {
             return;
         }
         
-        console.log(`📅 Ładowanie planu z JSON: ${type} - ${item}`);
+        console.log(`Ładowanie planu z JSON: ${type} - ${item}`);
         
         this.setLoading(true);
         this.hideError();
@@ -437,7 +432,7 @@ class ScheduleApp {
     }
     
     displaySchedule(type, item) {
-        console.log('🎨 Wyświetlanie planu lekcji');
+        console.log(' Wyświetlanie planu lekcji');
         
         const table = document.getElementById('schedule-table');
         const tbody = document.getElementById('schedule-body');
@@ -545,7 +540,7 @@ class ScheduleApp {
         // Pokaż tabelę
         table.classList.remove('hidden');
         
-        console.log(`✅ Wyświetlono plan dla ${type}: ${item}`);
+        console.log(`Wyświetlono plan dla ${type}: ${item}`);
     }
     
     setLoading(loading) {

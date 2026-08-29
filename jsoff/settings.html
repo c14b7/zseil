@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.1"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="/192.png" type="image/png">
+    <title>Plan Lekcji - ZSEIL</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <!-- Dodajemy Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <header>
+                <h1>Ustawienia</h1>
+            </header>
+            <section class="settings-section">
+                <h2>Preferencje</h2>
+                <div class="setting-item">
+                    <label for="theme-selector">Motyw:</label>
+                    <select id="theme-selector">
+                        <option value="light">Jasny</option>
+                        <option value="dark">Ciemny</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="language-selector">Język:</label>
+                    <select id="language-selector">
+                        <option value="pl">Polski</option>
+                        <option value="en">Angielski</option>
+                    </select>
+                </div>
+            </section>
+            <section class="settings-section">
+                <h2>Informacje o aplikacji</h2>
+                <p>Wersja: 1.0.0</p>
+                <p>Autor: ZSEIL Team</p>
+            </section>
+        </div>
