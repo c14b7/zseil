@@ -36,14 +36,51 @@
                 </div>
             </section>
             <section class="settings-section">
-                <h2>Informacje o aplikacji</h2>
-                <p>Wersja: 1.0.0</p>
-                <p>Autor: ZSEIL Team</p>
+                
+                
+                <div class="app-links">
+                    <span class="version-label">Wersja:</span>
+                    <span class="version-number">v1.5.5b beta</span>
+                </div>
+                <div class="app-links">
+                    <span class="version-label">Autor:</span>
+                    <span class="version-number">c14b7</span>
+                </div>
+                    <div class="app-links">
+                    <a href="https://github.com/c14b7/zseil" target="_blank" class="github-link">
+                        <i data-lucide="folder-git-2"></i>
+                        GitHub
+                    </a>
+                    <a href="https://github.com/c14b7/zseil/issues" target="_blank" class="feedback-link">
+                        <i data-lucide="bug"></i>
+                        Zgłoś błąd
+                    </a>
+                
+                
+                    <a href="https://ko-fi.com/c14b7" target="_blank" class="ko-fi">
+                        <i data-lucide="badge-euro"></i>
+                        Dofinansuj
+                    </a>
+                </div>
+                
+            </div>
             </section>
         </div>
 
     </main>
 
     <script src="settings.js"></script>
+        <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+    <script>
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>

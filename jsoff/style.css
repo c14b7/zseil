@@ -1004,4 +1004,5 @@ main {
     color: #f1f5f9;
     transition: all 0.2s ease;
     backdrop-filter: blur(10px);
+    margin-top: 8px;
 }
