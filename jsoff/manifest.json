@@ -1,0 +1,15 @@
+{
+  "short_name": "plan ZSEIL",
+  "name": "plan ZSEIL",
+  "icons": [
+    {
+      "src": "/248.png",
+      "sizes": "248x248",
+      "type": "image/png"
+    },
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "black",
+  "background_color": "white"
+}
