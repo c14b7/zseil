@@ -278,7 +278,9 @@ header p {
     color: #cbd5e1;
     border: 1px solid rgba(148, 163, 184, 0.2);
     backdrop-filter: blur(10px);
+    display: none ; /* Domyślnie ukryty, pokazuj tylko gdy jest potrzebny */
 }
+
 
 .data-status.loading {
     background: rgba(245, 158, 11, 0.2);
@@ -520,14 +522,29 @@ main {
     font-weight: 500;
 }
 
+.lesson .teacher:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .lesson .room {
     color: #f87171;
     font-weight: 500;
 }
 
+.lesson .room:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .lesson .class {
     color: #a78bfa;
     font-weight: 500;
+}
+
+.lesson .class:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .lesson .group {
@@ -1005,4 +1022,125 @@ main {
     transition: all 0.2s ease;
     backdrop-filter: blur(10px);
     margin-top: 8px;
+}
+
+/* ==========================================
+   STYLE DLA DRUKU (AUTOMATYCZNIE AKTYWNE)
+   ========================================== */
+@media print {
+    /* 1. Ukrywanie zbędnych elementów interfejsu */
+    header,
+    footer,
+    .controls,
+    .technical-banner,
+    .dynamic-tech-banner,
+    .info-banner,
+    .settings-section,
+    .data-status,
+    .loading,
+    .error-message,
+    #load-btn {
+        display: none !important;
+    }
+
+    /* 2. Reset tła i kolorów do czarno-białych (oszczędność tuszu) */
+    * {
+        background: transparent !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        backdrop-filter: none !important;
+        animation: none !important;
+    }
+
+    body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+        font-size: 10pt;
+    }
+
+    .container,
+    main,
+    .schedule-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 3. Czarno-biała, czytelna tabela */
+    .schedule-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border: 2px solid #000000 !important;
+        margin-top: 10px !important;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        border: 1px solid #000000 !important;
+        padding: 4px 6px !important;
+        text-align: center !important;
+        vertical-align: top !important;
+        font-size: 9pt !important;
+    }
+
+    .schedule-table th {
+        background-color: #f0f0f0 !important;
+        font-weight: bold !important;
+        text-transform: uppercase;
+    }
+
+    .lesson-number {
+        font-weight: bold !important;
+        width: 10% !important;
+        background-color: #f8f8f8 !important;
+    }
+
+    /* 4. Wygląd pojedynczych lekcji w komórce */
+    .lesson {
+        border: 1px solid #666666 !important;
+        border-radius: 2px !important;
+        padding: 3px 4px !important;
+        margin: 2px 0 !important;
+        text-align: left !important;
+        page-break-inside: avoid;
+    }
+
+    .lesson::before {
+        display: none !important; /* Usunięcie kolorowych pasków z boku */
+    }
+
+    .lesson .subject {
+        font-weight: bold !important;
+        font-size: 9.5pt !important;
+        margin-bottom: 2px !important;
+    }
+
+    .lesson .details {
+        font-size: 8pt !important;
+    }
+
+    .lesson .teacher,
+    .lesson .room,
+    .lesson .class {
+        font-weight: normal !important;
+        text-decoration: none !important;
+    }
+
+    .lesson .group {
+        border: 1px dashed #000000 !important;
+        background: transparent !important;
+        padding: 1px 3px !important;
+        font-size: 7.5pt !important;
+        margin-top: 2px !important;
+    }
+
+    hr {
+        border: 0;
+        border-top: 1px dashed #ccc;
+        margin: 4px 0;
+    }
 }

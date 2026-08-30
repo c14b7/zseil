@@ -223,12 +223,12 @@ class ScheduleApp {
         if (totalSchedules) totalSchedules.textContent = metadata.total_schedules_scraped || 0;
     }
     
-    setupEventListeners() {
+        setupEventListeners() {
         const classSelector = document.getElementById('class-selector');
         const teacherSelector = document.getElementById('teacher-selector');
         const roomSelector = document.getElementById('room-selector');
+        const table = document.getElementById('schedule-table');
         
-        // Obsługa wyboru z listy i automatyczne ładowanie
         if (classSelector) {
             classSelector.addEventListener('change', (e) => {
                 if (e.target.value) {
@@ -257,6 +257,37 @@ class ScheduleApp {
                     if (classSelector) classSelector.value = '';
                     if (teacherSelector) teacherSelector.value = '';
                     this.updateUrlParam('room', e.target.value);
+                    this.loadSchedule();
+                }
+            });
+        }
+
+        // Obsługa kliknięć w elementy planu (klasa / nauczyciel / sala)
+        if (table) {
+            table.addEventListener('click', (e) => {
+                const target = e.target.closest('[data-type][data-value]');
+                if (!target) return;
+
+                const type = target.dataset.type;
+                const value = target.dataset.value;
+
+                if (type === 'klasa' && classSelector) {
+                    teacherSelector.value = '';
+                    roomSelector.value = '';
+                    classSelector.value = value;
+                    this.updateUrlParam('class', value);
+                    this.loadSchedule();
+                } else if (type === 'nauczyciel' && teacherSelector) {
+                    classSelector.value = '';
+                    roomSelector.value = '';
+                    teacherSelector.value = value;
+                    this.updateUrlParam('teacher', value);
+                    this.loadSchedule();
+                } else if (type === 'sala' && roomSelector) {
+                    classSelector.value = '';
+                    teacherSelector.value = '';
+                    roomSelector.value = value;
+                    this.updateUrlParam('room', value);
                     this.loadSchedule();
                 }
             });
@@ -454,15 +485,27 @@ class ScheduleApp {
                         detailsDiv.className = 'details';
                         
                         if (type === 'klasa') {
-                            if (lesson.teacher) detailsDiv.innerHTML += `<span class="teacher">${lesson.teacher}</span><br>`;
-                            if (lesson.room) detailsDiv.innerHTML += `<span class="room">sala ${lesson.room}</span>`;
-                        } else if (type === 'nauczyciel') {
-                            if (lesson.class) detailsDiv.innerHTML += `<span class="class">${lesson.class}</span><br>`;
-                            if (lesson.room) detailsDiv.innerHTML += `<span class="room">sala ${lesson.room}</span>`;
-                        } else if (type === 'sala') {
-                            if (lesson.class) detailsDiv.innerHTML += `<span class="class">${lesson.class}</span><br>`;
-                            if (lesson.teacher) detailsDiv.innerHTML += `<span class="teacher">${lesson.teacher}</span>`;
+                        if (lesson.teacher) {
+                            detailsDiv.innerHTML += `<span class="teacher" data-type="nauczyciel" data-value="${lesson.teacher}">${lesson.teacher}</span><br>`;
                         }
+                        if (lesson.room) {
+                            detailsDiv.innerHTML += `<span class="room" data-type="sala" data-value="${lesson.room}">sala ${lesson.room}</span>`;
+                        }
+                    } else if (type === 'nauczyciel') {
+                        if (lesson.class) {
+                            detailsDiv.innerHTML += `<span class="class" data-type="klasa" data-value="${lesson.class}">${lesson.class}</span><br>`;
+                        }
+                        if (lesson.room) {
+                            detailsDiv.innerHTML += `<span class="room" data-type="sala" data-value="${lesson.room}">sala ${lesson.room}</span>`;
+                        }
+                    } else if (type === 'sala') {
+                        if (lesson.class) {
+                            detailsDiv.innerHTML += `<span class="class" data-type="klasa" data-value="${lesson.class}">${lesson.class}</span><br>`;
+                        }
+                        if (lesson.teacher) {
+                            detailsDiv.innerHTML += `<span class="teacher" data-type="nauczyciel" data-value="${lesson.teacher}">${lesson.teacher}</span>`;
+                        }
+                    }
                         
                         if (lesson.group) {
                             const groupDiv = document.createElement('div');
@@ -518,4 +561,6 @@ class ScheduleApp {
 document.addEventListener('DOMContentLoaded', () => {
     new ScheduleApp();
 });
+
+
 
